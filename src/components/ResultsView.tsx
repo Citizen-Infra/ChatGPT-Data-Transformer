@@ -323,6 +323,22 @@ export function ResultsView() {
               </div>
             </div>
           </div>
+
+          {/* Build with us — callout */}
+          <div className="border-l-4 border-green-accent bg-green-light/40 rounded-r-lg px-6 py-5 mt-8">
+            <p className="text-[14px] font-semibold text-[var(--text-primary)] mb-2">Want to build anti-extractive, data-portable, relational tools?</p>
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
+              PDT is part of a growing ecosystem of citizen infrastructure &mdash; tools designed to give people sovereignty over their data and strengthen how communities relate. We&apos;re builders, designers, and citizens looking for collaborators.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
+                Get in touch &rarr;
+              </a>
+              <Link href="/#cibc" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
+                Learn about CIBC &rarr;
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
