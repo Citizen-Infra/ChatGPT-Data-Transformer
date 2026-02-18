@@ -80,22 +80,25 @@ export function ResultsView() {
       <Nav variant="landing" />
       <SubNav />
 
-      {/* Hero — dark green, eyebrow + title + paragraph */}
+      {/* Hero — dark green, eyebrow + title + paragraph + CTAs */}
       <section className="bg-pdt-dark text-center px-6 py-14 md:py-16">
-        <div className="flex items-center justify-center gap-4 mb-5">
-          {["Downloaded", "Transformed", "Portable"].map((word) => (
-            <span key={word} className="inline-flex items-center gap-1.5 text-[13px] font-semibold tracking-wide" style={{ color: "#88E7BB" }}>
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-              {word}
-            </span>
-          ))}
+        <div className="uppercase tracking-widest text-[11px] font-semibold mb-4" style={{ color: "#88E7BB" }}>
+          What just downloaded
         </div>
         <h1 className="font-serif-pdt text-4xl md:text-5xl font-normal text-white mb-4 leading-tight">
-          Your thinking just landed.
+          The architecture of your thinking.
         </h1>
-        <p className="text-white/70 text-[15px] max-w-[560px] mx-auto leading-relaxed">
-          A zip file just hit your downloads &mdash; that&apos;s the schema for your full ChatGPT history. Connect it to Claude to parse, populate, and start building on years of thinking.
+        <p className="text-white/70 text-[15px] max-w-[600px] mx-auto leading-relaxed mb-8">
+          That zip file is a portable schema &mdash; the scaffolding that turns raw chat logs into something an AI can actually understand. Connect it to Claude to populate it and start working with your history, not just storing it.
         </p>
+        <div className="flex items-center justify-center gap-3 flex-wrap">
+          <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/90 transition-colors">
+            Populate your schema &rarr;
+          </Link>
+          <a href="#files-explained" className="inline-flex items-center gap-2 border border-white/30 text-white rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/10 transition-colors">
+            What downloaded?
+          </a>
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
