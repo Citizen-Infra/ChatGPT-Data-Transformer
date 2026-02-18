@@ -44,3 +44,10 @@ body {
 .font-mono-pdt {
   font-family: 'JetBrains Mono', monospace;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

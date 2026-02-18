@@ -690,7 +690,6 @@ export function parseConversationsJson(data: unknown): { evidence: EvidenceRow[]
   const MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const activity_by_month: MonthlyActivity[] = Object.entries(monthCounts)
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .slice(-8)
     .map(([ym, count]) => {
       const [year, month] = ym.split("-");
       return { label: `${MN[parseInt(month, 10) - 1]} ${year}`, yearMonth: ym, count };
