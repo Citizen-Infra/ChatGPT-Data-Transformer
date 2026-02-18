@@ -291,9 +291,34 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Projects — compact table */}
+        {/* Projects — transformer cards + compact table */}
         <div className="mb-10">
           <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Projects</div>
+
+          {/* Data Transformer cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+            {/* ChatGPT — current site, active */}
+            <div className="relative border-2 border-pdt-dark rounded-[14px] bg-white px-5 py-5">
+              <span className="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded-full bg-pdt-dark text-white">You are here</span>
+              <div className="text-2xl mb-2">💬</div>
+              <h4 className="text-[15px] font-bold text-[var(--text-primary)] mb-1">ChatGPT Data Transformer</h4>
+              <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed">
+                Export your ChatGPT history into portable, structured files you own &mdash; MCP-ready for Claude, shareable as networking cards.
+              </p>
+            </div>
+            {/* Claude — links to other site */}
+            <a href="https://claude-data-transformer.vercel.app/#upload" className="block border border-[var(--border)] rounded-[14px] bg-white px-5 py-5 no-underline hover:border-[#d5d0ca] hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.03)] hover:-translate-y-px transition-all">
+              <div className="text-2xl mb-2">🟣</div>
+              <h4 className="text-[15px] font-bold text-[var(--text-primary)] mb-1">Claude Data Transformer</h4>
+              <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed mb-2">
+                Do the same for your Claude conversation history &mdash; portable, structured, yours.
+              </p>
+              <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-pdt-dark">
+                Try it &rarr;
+              </span>
+            </a>
+          </div>
+
           <div className="border border-[var(--border)] rounded-xl overflow-hidden">
             <table className="w-full text-sm">
               <thead>
