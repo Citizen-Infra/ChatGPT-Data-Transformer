@@ -8,7 +8,9 @@ export function SubNav() {
         </p>
         <div className="flex items-center justify-center gap-2 flex-shrink-0">
           <a
-            href="#build"
+            href="https://github.com/Citizen-Infra"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[11px] font-semibold text-white border border-white/30 py-1.5 px-4 rounded no-underline hover:bg-white/10 transition-colors whitespace-nowrap"
           >
             Build with us →

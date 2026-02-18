@@ -188,7 +188,7 @@ export default function Home() {
               {[
                 { title: "Client-side JavaScript only", desc: "Your file is processed entirely in your browser using your device\u2019s compute. Nothing is uploaded anywhere." },
                 { title: "No database, nothing to breach", desc: "We don\u2019t store anything. There\u2019s no account system. Closing this tab destroys all processed data permanently." },
-                { title: "AI features are opt-in only", desc: "Some features \u2014 like generating your caricature or networking card \u2014 can use Claude\u2019s API to process limited, non-conversational parts of your data (your lenses and project types, never raw conversations). You always choose when to share, and you can generate these artifacts yourself using your local MCP instead." },
+                { title: "AI features are opt-in only", desc: "Some features \u2014 like generating your networking card \u2014 can use Claude\u2019s API to process limited, non-conversational parts of your data (your lenses and project types, never raw conversations). You always choose when to share, and you can generate these artifacts yourself using your local MCP instead." },
                 { title: "Privacy-preserving analytics only", desc: "We use Plausible (not Google Analytics) for simple page-view counts. No behavioral tracking, no fingerprinting." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-3">
@@ -218,7 +218,7 @@ export default function Home() {
               <div className="text-center text-[var(--text-muted)] text-sm">↓</div>
               <div className="bg-white border border-[var(--border)] rounded-lg py-3 px-4 border-l-4 border-l-green-accent">
                 <div className="font-semibold text-xs">📦 Outputs (Download)</div>
-                <div className="text-[11px] text-[var(--text-secondary)]">MCP Files · Networking Card · Caricature</div>
+                <div className="text-[11px] text-[var(--text-secondary)]">MCP Files · Networking Card</div>
               </div>
               <div className="text-center text-[var(--text-muted)] text-sm">↓</div>
               <div className="bg-white border border-[var(--border)] rounded-lg py-3 px-4">
@@ -237,7 +237,7 @@ export default function Home() {
           <div className="flex gap-6">
             <a href="#how" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">How it works</a>
             <a href="#privacy" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">Privacy</a>
-            <a href="#github" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
+            <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
             <a href="https://citizeninfra.org" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">CIBC</a>
           </div>
           <div className="text-[12px] text-[var(--text-muted)]">© 2025 Citizen Infrastructure · Your Data, Always</div>

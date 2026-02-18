@@ -40,6 +40,8 @@ export function ResultsView() {
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState("");
   const [location, setLocation] = useState("");
+  const [showCardForm, setShowCardForm] = useState(false);
+  const [cardGenerated, setCardGenerated] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -69,6 +71,7 @@ export function ResultsView() {
       link.download = "pdt-networking-card.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
+      setCardGenerated(true);
     } catch (e) {
       console.error("Download failed", e);
     }
@@ -212,7 +215,7 @@ export function ResultsView() {
 
 
         {/* ═══════════════════════════════════════════════════════════
-            MCP FILES + CARICATURE — side by side, MCP on LEFT (dark), Caricature on RIGHT (light)
+            MCP FILES + NETWORKING CARD — side by side
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -228,7 +231,8 @@ export function ResultsView() {
               <p className="text-[13px] text-white/70 leading-relaxed mb-3">
                 You&apos;re downloading the <strong className="text-white/90">file structure</strong> for your own Claude MCP server. Once set up, Claude can search and cite your full ChatGPT history — projects, evidence, and usage patterns — in real time.
               </p>
-              <p className="text-[13px] text-white/60 mb-4">The zip contains the schema, evidence excerpts, and metadata. Claude does the deep synthesis when you connect it. Setup takes about 15 minutes.</p>
+              <p className="text-[13px] text-white/60 mb-2">The zip contains the schema, evidence excerpts, and metadata. Claude does the deep synthesis when you connect it. Setup takes about 15 minutes.</p>
+              <p className="text-[13px] text-white/60 mb-4">Once connected, you can generate your networking card and other artifacts locally — no API needed.</p>
               <a href="https://docs.anthropic.com/en/docs/build-with-claude/mcp" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-2 border-white/30 text-white bg-white/10 py-2.5 px-5 rounded-lg text-sm font-semibold w-fit no-underline hover:bg-white/20 transition-colors mb-4">
                 View setup guide
               </a>
@@ -237,55 +241,109 @@ export function ResultsView() {
               </p>
             </div>
 
-            {/* Caricature card — light background */}
+            {/* Networking Card — light background */}
             <div className="border border-[var(--card-border)] rounded-xl p-8">
-              <div className="text-4xl mb-3">🎭</div>
+              <div className="text-4xl mb-3">🪪</div>
               <div className="flex gap-2 mb-2">
                 <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-green-light text-pdt-dark">FREE</span>
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-gray-100 text-[var(--text-secondary)]">AI-GENERATED</span>
+                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-pdt-dark text-white">NEW</span>
               </div>
-              <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight">Your Caricature</h3>
+              <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight">Your Networking Card</h3>
               <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
-                Not your face — your mind. An illustrated portrait generated from your worldview lenses and project patterns. Strange, accurate, shareable.
+                A phone-ready PNG that shows your top projects, interests, thinking style, and how you use AI — pulled directly from your ChatGPT history. Not a resume. Not a LinkedIn profile. A real snapshot of how your mind works.
               </p>
-              <p className="text-xs text-[var(--text-muted)] italic leading-relaxed mb-5">
-                Note: this is the only feature that sends data to an external API — a short text prompt with your lenses only, never your raw conversations.
+              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-2">
+                <strong className="text-[var(--text-primary)]">What it&apos;s for:</strong> Share it at meetups, conferences, or local events to skip the small talk and find collaborators, co-builders, and friends faster.
               </p>
-              <button type="button" disabled className="opacity-60 cursor-not-allowed inline-flex items-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white py-2.5 px-5 rounded-lg text-sm font-semibold w-fit">
-                Generate my caricature →
-              </button>
-            </div>
-          </div>
-        </div>
+              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
+                <strong className="text-[var(--text-primary)]">What&apos;s on it:</strong> Your top project themes &amp; interest areas, how you use AI, active projects with date ranges, and your name, role, and location (you choose what to include).
+              </p>
 
+              {/* Two generation options — equal visual weight */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                {/* Option A — Generate now (uses API) */}
+                <div className="border border-[var(--border)] rounded-lg p-4 bg-green-light/30">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-pdt-dark mb-2">Option A · Generate now</div>
+                  <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed mb-3">
+                    We&apos;ll use Claude&apos;s API to generate your card in this session. Only your lenses, project types, and usage patterns are shared — never your raw conversations.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setShowCardForm(!showCardForm)}
+                    className="inline-flex items-center gap-2 bg-pdt-dark text-white py-2 px-4 rounded-lg text-[13px] font-semibold hover:bg-green-mid transition-colors w-full justify-center"
+                  >
+                    {showCardForm ? "Close" : "Generate my card →"}
+                  </button>
+                </div>
+                {/* Option B — Generate locally (MCP) */}
+                <div className="border border-[var(--border)] rounded-lg p-4">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">Option B · Use local MCP</div>
+                  <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed mb-3">
+                    Already set up your MCP? Generate your networking card locally using Claude Desktop. Your data never leaves your machine.
+                  </p>
+                  <a
+                    href="https://docs.anthropic.com/en/docs/build-with-claude/mcp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white py-2 px-4 rounded-lg text-[13px] font-semibold w-full justify-center no-underline hover:bg-green-light transition-colors"
+                  >
+                    View local instructions →
+                  </a>
+                </div>
+              </div>
 
-        {/* ═══════════════════════════════════════════════════════════
-            NETWORKING CARD — Customization + download
-            ═══════════════════════════════════════════════════════════ */}
-        <div className="pt-14 pb-10 border-t border-[var(--border)]">
-          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-2">Your Card</div>
-          <h2 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] mb-8 leading-tight">Customize &amp; Download</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            <div className="md:col-span-1 flex flex-col gap-4">
-              <div>
-                <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1.5">Display Name</label>
-                <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="Your name" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
-              </div>
-              <div>
-                <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1.5">Role / Title</label>
-                <input type="text" value={role} onChange={(e) => setRole(e.target.value)} placeholder="e.g. Designer, Engineer" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
-              </div>
-              <div>
-                <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1.5">Location</label>
-                <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Houston, TX" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
-              </div>
-              <button type="button" onClick={handleDownloadCard} className="mt-2 inline-flex items-center justify-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-green-mid transition-colors w-full">
-                Download Card PNG →
-              </button>
-            </div>
-            <div className="md:col-span-2 flex justify-center">
-              <div className="w-[320px] shadow-lg rounded-xl overflow-hidden">
-                <NetworkingCardInner snapshot={snapshot} customization={customization} />
+              {/* Privacy footnote */}
+              <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
+                Either way, your raw conversations are never shared.{" "}
+                <Link href="/#privacy" className="underline hover:text-[var(--text-secondary)]">Learn more about our privacy approach</Link>
+              </p>
+
+              {/* Inline customization flow — collapsible panel */}
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showCardForm ? "max-h-[600px] mt-5" : "max-h-0"}`}>
+                <div className="border-t border-[var(--border)] pt-5">
+                  <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Personalize your card</div>
+                  <div className="flex flex-col gap-3 mb-4">
+                    <div>
+                      <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1">Display Name</label>
+                      <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="Your name" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
+                    </div>
+                    <div>
+                      <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1">Role / Title</label>
+                      <input type="text" value={role} onChange={(e) => setRole(e.target.value)} placeholder="e.g. Designer, Engineer" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
+                    </div>
+                    <div>
+                      <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1">Location</label>
+                      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Houston, TX" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-[var(--text-muted)] italic mb-4">These details are added to your card locally — they&apos;re not sent to any API.</p>
+                  <button
+                    type="button"
+                    onClick={handleDownloadCard}
+                    className="inline-flex items-center justify-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-green-mid transition-colors w-full"
+                  >
+                    Generate &amp; Download →
+                  </button>
+
+                  {/* Card preview + re-download after generation */}
+                  {cardGenerated && (
+                    <div className="mt-5 pt-5 border-t border-[var(--border)]">
+                      <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Your card</div>
+                      <div className="flex justify-center mb-4">
+                        <div className="w-[280px] shadow-lg rounded-xl overflow-hidden">
+                          <NetworkingCardInner snapshot={snapshot} customization={customization} />
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleDownloadCard}
+                        className="inline-flex items-center justify-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white rounded-lg py-2.5 px-5 text-sm font-semibold hover:bg-green-light transition-colors w-full"
+                      >
+                        Download again →
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -360,7 +418,7 @@ export function ResultsView() {
           </p>
 
           {/* CTA */}
-          <a href="#github" className="inline-flex items-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
+          <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
             Join us on GitHub →
           </a>
         </div>
@@ -370,11 +428,11 @@ export function ResultsView() {
       {/* Footer */}
       <footer className="border-t border-[var(--border)] mt-8 py-6 px-6 md:px-8">
         <div className="max-w-[960px] mx-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="font-mono-pdt font-bold text-[15px] text-pdt-dark">pdt.com</div>
+          <div className="font-mono-pdt font-bold text-[15px] text-pdt-dark">chatgpt.pdt</div>
           <div className="flex gap-6">
             <a href="/#how" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">How it works</a>
             <a href="/#privacy" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">Privacy</a>
-            <a href="#github" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
+            <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
             <a href="https://citizeninfra.org" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">CIBC</a>
           </div>
           <div className="text-[12px] text-[var(--text-muted)]">© 2025 Citizen Infrastructure · Your Data, Always</div>
