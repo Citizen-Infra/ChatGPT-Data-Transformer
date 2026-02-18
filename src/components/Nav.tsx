@@ -3,6 +3,35 @@
 import { useState } from "react";
 import Link from "next/link";
 
+function PdtLogo({ isDark }: { isDark: boolean }) {
+  return (
+    <svg viewBox="0 0 200 40" className="h-9 w-auto" aria-label="chatgpt.pdt — personal data transformer">
+      <text
+        x="0"
+        y="18"
+        fontFamily="'JetBrains Mono', monospace"
+        fontWeight="700"
+        fontSize="16"
+        fill={isDark ? "#ffffff" : "#1a3a2a"}
+      >
+        chatgpt.pdt
+      </text>
+      <text
+        x="0"
+        y="34"
+        fontFamily="'JetBrains Mono', monospace"
+        fontWeight="400"
+        fontSize="9"
+        letterSpacing="0.5"
+        fill={isDark ? "rgba(255,255,255,0.5)" : "#888888"}
+        className="hidden min-[480px]:inline"
+      >
+        personal data transformer
+      </text>
+    </svg>
+  );
+}
+
 export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }) {
   const isDark = variant === "results";
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,14 +49,9 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
       }`}
     >
       <div className="h-14 flex items-center justify-between">
-        {/* Logo + subtitle */}
-        <Link href="/" className={`flex flex-col no-underline leading-none ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}>
-          <span className={`font-mono-pdt font-bold text-[15px] ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}>
-            chatgpt.pdt
-          </span>
-          <span className={`font-mono-pdt text-[10px] tracking-wide ${isDark ? "text-white/50" : "text-[var(--text-muted)]"} hidden min-[480px]:block`}>
-            personal data transformer
-          </span>
+        {/* Logo — clickable SVG */}
+        <Link href="/" className="no-underline flex-shrink-0">
+          <PdtLogo isDark={isDark} />
         </Link>
 
         {/* Desktop nav links */}
