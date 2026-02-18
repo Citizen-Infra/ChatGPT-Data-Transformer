@@ -218,53 +218,86 @@ export function ResultsView() {
 
 
         {/* ═══════════════════════════════════════════════════════════
-            MCP FILES + NETWORKING CARD — side by side
+            MCP + NETWORKING CARD — redesigned action cards
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* MCP Files card — dark background, concise entry point */}
-            <div className="bg-pdt-dark rounded-xl p-8 flex flex-col">
-              <div className="text-4xl mb-3">📁</div>
-              <div className="flex gap-2 items-center mb-2 flex-wrap">
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-white/15 text-white inline-flex items-center gap-1">◆ Power Users</span>
-                <span className="text-[10px] text-white/50">· REQUIRES CLAUDE DESKTOP</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* MCP Card — dark */}
+            <div
+              className="rounded-2xl flex flex-col overflow-hidden transition-all hover:shadow-[0_8px_32px_rgba(26,46,35,0.25)]"
+              style={{ background: "#1A2E23", border: "1px solid #243B2E", padding: "36px 32px 32px" }}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 flex-shrink-0"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.1)" }}
+              >
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
+                  <circle cx="12" cy="13" r="2" stroke="rgba(255,255,255,0.4)"/>
+                  <path d="M12 11v-1.5M12 15v1.5M14 13h1.5M10 13H8.5" stroke="rgba(255,255,255,0.4)"/>
+                </svg>
               </div>
-              <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight text-white">MCP Files for Claude</h3>
-              <p className="text-[13px] text-white/70 leading-relaxed mb-3">
-                Your files are ready. Connect them to Claude Desktop and get instant access to your full ChatGPT history &mdash; searchable and citable.
+              <span
+                className="inline-flex items-center text-[10px] font-semibold uppercase tracking-wider rounded-full w-fit mb-4"
+                style={{ padding: "4px 10px", background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}
+              >
+                Requires Claude Desktop
+              </span>
+              <h3 className="font-serif-pdt text-2xl font-normal text-white mb-3 leading-tight">Connect to Claude</h3>
+              <p className="text-[15px] leading-relaxed mb-2 flex-grow" style={{ color: "rgba(255,255,255,0.75)" }}>
+                Point your schema at Claude through MCP. It stays on your device &mdash; Claude reads it directly.
               </p>
-              <p className="text-[13px] text-white/60 mb-6">
-                This is the foundation. Once connected, you can generate networking cards, explore your thinking patterns, and build on years of past conversations. Your files stay on your device &mdash; when you ask Claude a question, Claude processes them directly. We never see your data; you&apos;re working with Claude, not with us.
-              </p>
-              <div className="mt-auto">
-                <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark py-2.5 px-6 rounded-lg text-sm font-semibold no-underline hover:bg-gray-100 transition-colors">
-                  Get set up &rarr;
-                </Link>
-              </div>
+              <p className="text-[13px] leading-relaxed mb-7" style={{ color: "rgba(255,255,255,0.5)" }}>~5 minute setup</p>
+              <Link
+                href="/mcp-setup"
+                className="inline-flex items-center gap-2 w-fit rounded-full text-[14px] font-semibold no-underline transition-all hover:-translate-y-px"
+                style={{ padding: "12px 24px", background: "#FFFFFF", color: "#1A2E23" }}
+              >
+                Set up MCP
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+              </Link>
             </div>
 
-            {/* Networking Card — light background, concise entry point */}
-            <div className="border border-[var(--card-border)] rounded-xl p-8 flex flex-col">
-              <div className="text-4xl mb-3">🪪</div>
-              <div className="flex gap-2 mb-2">
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-pdt-dark text-white">NEW</span>
+            {/* Networking Card — light */}
+            <div
+              className="rounded-2xl flex flex-col overflow-hidden transition-all hover:shadow-[0_8px_32px_rgba(26,46,35,0.08)]"
+              style={{ background: "#FFFFFF", border: "1px solid #D8DDD9", padding: "36px 32px 32px" }}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 flex-shrink-0"
+                style={{ background: "#F3F7F4", border: "1px solid #E8F0EB" }}
+              >
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#3D6B50" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="3"/>
+                  <path d="M7 8h6M7 12h10M7 16h4"/>
+                </svg>
               </div>
-              <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight">Your Networking Card</h3>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
-                A shareable snapshot of your projects, interests, and thinking style &mdash; pulled from your ChatGPT history. Share it at your next meetup or community event to skip the small talk and find collaborators faster.
+              <span
+                className="inline-flex items-center text-[10px] font-semibold uppercase tracking-wider rounded-full w-fit mb-4"
+                style={{ padding: "4px 10px", background: "#FFF8E6", color: "#8B6914", border: "1px solid #F0E0A8" }}
+              >
+                New
+              </span>
+              <h3 className="font-serif-pdt text-2xl font-normal text-[var(--text-primary)] mb-3 leading-tight">Your Networking Card</h3>
+              <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mb-2 flex-grow">
+                A shareable snapshot of your projects, interests, and thinking style &mdash; pulled from your history. Bring it to your next meetup instead of small talk.
               </p>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
-                We believe technology should help us relate better to ourselves, each other, and the world. Your card is a small step in that direction.
-              </p>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-6">
-                You choose how it&apos;s made: generate it here using our API, or use your MCP to have Claude build it from your local files. Either way, PDT never sees your conversations &mdash; you&apos;re working directly with Claude.
-              </p>
-              <div className="mt-auto">
-                <Link href="/networking-card" className="inline-flex items-center gap-2 bg-pdt-dark text-white py-2.5 px-6 rounded-lg text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
-                  Learn more &amp; generate &rarr;
-                </Link>
-              </div>
+              <p className="text-[13px] mb-7" style={{ color: "#6B7C72" }}>Generate here or via MCP in Claude</p>
+              <Link
+                href="/networking-card"
+                className="inline-flex items-center gap-2 w-fit rounded-full text-[14px] font-semibold no-underline text-white transition-all hover:-translate-y-px"
+                style={{ padding: "12px 24px", background: "#1A2E23" }}
+              >
+                Generate your card
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+              </Link>
             </div>
+
           </div>
         </div>
 
