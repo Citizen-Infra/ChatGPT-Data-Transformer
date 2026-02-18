@@ -22,5 +22,3 @@ Every conversation you've had with ChatGPT — the context you've built, the pro
 Data stays local. Nothing is uploaded. The interface is Claude itself — no new UI to learn.
 
 ---
-
-Want me to add sections like installation instructions, schema details, or a roadmap? I can also tailor the tone if Paul has preferences for the repo style.
