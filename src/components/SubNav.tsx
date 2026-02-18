@@ -1,38 +1,77 @@
 export function SubNav() {
   return (
     <div
-      className="bg-pdt-dark"
       style={{
         width: "100vw",
         position: "relative",
         left: "50%",
-        transform: "translateX(-50%)",
+        marginLeft: "-50vw",
+        backgroundColor: "#1a3a2a",
+        maxWidth: "none",
+        boxSizing: "border-box" as const,
+        padding: "10px 0",
       }}
     >
-      <div className="max-w-[960px] mx-auto px-6 md:px-8 py-[10px] flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-        <p className="text-white/80 text-xs leading-relaxed text-center md:text-left m-0">
+      <div
+        style={{
+          maxWidth: "960px",
+          margin: "0 auto",
+          padding: "0 24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "16px",
+          flexWrap: "wrap",
+        }}
+      >
+        <p className="text-white/80 text-xs leading-relaxed text-center md:text-left m-0" style={{ margin: 0 }}>
           Help build citizen-owned data infrastructure by supporting the{" "}
           <a
             href="#cibc"
-            className="font-semibold text-[#a8d5a2] no-underline hover:underline hover:text-white transition-colors"
+            className="font-semibold no-underline hover:underline hover:text-white transition-colors"
+            style={{ color: "#a8d5a2" }}
           >
             Citizen Infrastructure Builders Club (CIBC)
           </a>
         </p>
         <div className="flex items-center justify-center gap-2 flex-shrink-0 flex-wrap min-[400px]:flex-nowrap">
-          {/* Primary — solid white filled, dark text */}
+          {/* Primary — solid white bg, dark green text, no border color showing */}
           <a
             href="https://github.com/Citizen-Infra"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-semibold text-pdt-dark bg-white border border-white py-[8px] px-5 rounded-md no-underline hover:bg-[#f0f0f0] transition-colors whitespace-nowrap cursor-pointer"
+            style={{
+              backgroundColor: "#ffffff",
+              color: "#1a3a2a",
+              border: "1px solid #ffffff",
+              fontWeight: 600,
+              padding: "8px 20px",
+              borderRadius: "6px",
+              fontSize: "11px",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              cursor: "pointer",
+            }}
+            className="hover:!bg-[#f0f0f0] transition-colors"
           >
             Build with us &rarr;
           </a>
-          {/* Secondary — ghost/outline, white text */}
+          {/* Secondary — transparent bg, white text, white border */}
           <a
             href="#coffee"
-            className="text-[11px] font-normal text-white bg-transparent border border-white/60 py-[8px] px-5 rounded-md no-underline hover:bg-white/10 hover:border-white transition-colors whitespace-nowrap cursor-pointer"
+            style={{
+              backgroundColor: "transparent",
+              color: "#ffffff",
+              border: "1px solid rgba(255,255,255,0.5)",
+              fontWeight: 400,
+              padding: "8px 20px",
+              borderRadius: "6px",
+              fontSize: "11px",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              cursor: "pointer",
+            }}
+            className="hover:!bg-white/10 hover:!border-white transition-colors"
           >
             Buy us a coffee &rarr;
           </a>
