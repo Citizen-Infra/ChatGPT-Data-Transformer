@@ -6,21 +6,6 @@ import { PDT_SNAPSHOT_KEY } from "@/lib/types";
 import type { Snapshot } from "@/lib/types";
 import { Nav } from "./Nav";
 import { SubNav } from "./SubNav";
-import { ZipBanner } from "./ZipBanner";
-
-/* WCAG-accessible color palette — distinguishable across common color vision deficiencies */
-const USAGE_COLORS: Record<string, string> = {
-  technical:     "#1a3a2a",
-  research:      "#4a7ab5",
-  writing:       "#d4883a",
-  brainstorming: "#7b5ea7",
-  planning:      "#c4564a",
-  communication: "#3a9e8f",
-  learning:      "#8ab84a",
-  creative:      "#d4a03a",
-  other:         "#999999",
-};
-const USAGE_COLOR_FALLBACK = "#1a3a2a";
 
 /** Format an ISO date string into "Mon YYYY" */
 function formatShortDate(iso: string): string {
@@ -65,7 +50,6 @@ export function ResultsView() {
     );
   }
 
-  const topUsage = snapshot.usage_signature.filter((u) => u.pct > 0);
   const yearsOfHistory = snapshot.date_range.first && snapshot.date_range.last
     ? Math.max(1, Math.round((new Date(snapshot.date_range.last).getTime() - new Date(snapshot.date_range.first).getTime()) / (365.25 * 24 * 60 * 60 * 1000)))
     : 0;
@@ -127,100 +111,7 @@ export function ResultsView() {
         </div>
       </div>
 
-      <ZipBanner />
-
       <div className="max-w-[960px] mx-auto px-6 md:px-8 pb-20">
-
-        {/* ═══════════════════════════════════════════════════════════
-            HOW YOU USE AI — Horizontal bars (WCAG accessible)
-            ═══════════════════════════════════════════════════════════ */}
-        <div className="pt-14 pb-4">
-          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-2">Usage Signature</div>
-          <h2 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] mb-8 leading-tight">How you use AI</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-[var(--border)] pt-8">
-
-            {/* Left: Accessible horizontal bar chart — one bar per category */}
-            <div>
-              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Breakdown by Usage Type</div>
-              <div role="list" aria-label="Usage breakdown by category" className="flex flex-col gap-3">
-                {topUsage.map((u) => {
-                  const catKey = u.id.toLowerCase().replace(/[^a-z]/g, "");
-                  const barColor = USAGE_COLORS[catKey] ?? USAGE_COLOR_FALLBACK;
-                  const labelText = u.label.split(" &")[0].split(" /")[0];
-                  const labelId = `cat-${catKey}`;
-                  return (
-                    <div key={u.id} role="listitem" className="grid grid-cols-[110px_1fr_40px] gap-3 items-center">
-                      <span id={labelId} className="text-[14px] text-[var(--text-primary)] text-right truncate">{labelText}</span>
-                      <div
-                        className="h-4 bg-[#e8e5df] rounded overflow-hidden"
-                        role="progressbar"
-                        aria-labelledby={labelId}
-                        aria-valuenow={u.pct}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
-                        <div
-                          className="h-full rounded"
-                          style={{
-                            width: `${Math.max(u.pct, 4)}%`,
-                            backgroundColor: barColor,
-                            transition: "width 0.5s ease",
-                          }}
-                        />
-                      </div>
-                      <span className="text-[14px] font-semibold text-[var(--text-primary)] text-right">{u.pct}%</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right: Activity by month — individual month-year, chronological, scrollable */}
-            <div>
-              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Conversations by Month</div>
-              {snapshot.activity_by_month?.length > 0 ? (
-                <div
-                  role="list"
-                  aria-label="Conversations per month"
-                  className="flex flex-col gap-2.5 overflow-y-auto"
-                  style={{ maxHeight: "360px" }}
-                >
-                  {snapshot.activity_by_month.map((m) => {
-                    const maxCount = Math.max(...snapshot.activity_by_month!.map((x) => x.count), 1);
-                    const widthPct = Math.max((m.count / maxCount) * 100, 6);
-                    const labelId = `month-${m.yearMonth}`;
-                    return (
-                      <div key={m.yearMonth} role="listitem" className="grid grid-cols-[80px_1fr_40px] gap-3 items-center">
-                        <span id={labelId} className="text-[14px] text-[var(--text-secondary)] text-right">{m.label}</span>
-                        <div
-                          className="h-3.5 bg-green-light rounded overflow-hidden"
-                          role="progressbar"
-                          aria-labelledby={labelId}
-                          aria-valuenow={m.count}
-                          aria-valuemin={0}
-                          aria-valuemax={maxCount}
-                        >
-                          <div
-                            className="h-full rounded bg-[#2d5a3f]"
-                            style={{
-                              width: `${widthPct}%`,
-                              transition: "width 0.5s ease",
-                            }}
-                          />
-                        </div>
-                        <span className="text-[14px] font-semibold text-[var(--text-primary)] text-right">{m.count}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <p className="text-sm text-[var(--text-muted)]">No monthly data available.</p>
-              )}
-            </div>
-
-          </div>
-        </div>
-
 
         {/* ═══════════════════════════════════════════════════════════
             MCP FILES + NETWORKING CARD — side by side
