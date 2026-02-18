@@ -46,9 +46,10 @@ export default function NetworkingCardPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <>
       <Nav variant="landing" />
       <SubNav />
+      <main className="min-h-screen bg-white">
 
       {/* ═══════════════════════════════════════
           1. HERO
@@ -398,6 +399,7 @@ export default function NetworkingCardPage() {
           <div className="text-[12px] text-[var(--text-muted)]">&copy; 2025 Citizen Infrastructure &middot; Your Data, Always</div>
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }

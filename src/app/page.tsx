@@ -4,9 +4,10 @@ import { UploadSection } from "@/components/UploadSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <>
       <Nav variant="landing" />
       <SubNav />
+      <main className="min-h-screen bg-white">
 
       {/* Hero — cream bg, headline + upload in hero */}
       <section className="bg-cream text-center px-6 py-16 md:py-20">
@@ -343,6 +344,7 @@ export default function Home() {
           <div className="text-[12px] text-[var(--text-muted)]">© 2025 Citizen Infrastructure · Your Data, Always</div>
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }

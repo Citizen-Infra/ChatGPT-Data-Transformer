@@ -10,10 +10,10 @@ function PdtLogo({ isDark }: { isDark: boolean }) {
 
   return (
     <div className="flex flex-col leading-none" aria-label="chatgpt.pdt — personal data transformer">
-      <span className={`font-extrabold text-[22px] tracking-tight ${textColor}`} style={{ lineHeight: 1.2 }}>
+      <span className={`text-[1.5rem] tracking-tight ${textColor}`} style={{ fontWeight: 800, lineHeight: 1.2 }}>
         chatgpt<span style={{ color: dotColor }}>.</span>pdt
       </span>
-      <span className={`text-[12px] font-normal tracking-wide ${subtitleColor}`} style={{ lineHeight: 1.2 }}>
+      <span className={`text-[0.85rem] font-normal tracking-wide ${subtitleColor}`} style={{ lineHeight: 1.2 }}>
         personal data transformer
       </span>
     </div>
