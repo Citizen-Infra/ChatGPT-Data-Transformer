@@ -31,12 +31,24 @@ export default function Home() {
           What you&apos;ll walk away with
         </div>
         <h2 className="font-serif-pdt text-3xl md:text-4xl font-normal text-[var(--text-primary)] mb-4 leading-tight">
-          Three things. All yours.
+          Data sovereignty starts with data portability.
         </h2>
         <p className="text-[15px] text-[var(--text-secondary)] max-w-[640px] leading-relaxed mb-10">
-          Your ChatGPT history isn&apos;t just chat logs. It&apos;s a record of your ideas, projects, and how your mind works. PDT transforms it into something you can carry, share, and build on — in any AI tool, forever.
+          Your ChatGPT history isn&apos;t just chat logs. It&apos;s a record of your ideas, projects, and how your mind works. PDT transforms it into something you can carry, share, and build on — in any AI tool, forever. Your data. Your rules.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Card 1 — MCP Files for Claude (most important) */}
+          <div className="border border-[var(--card-border)] rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all">
+            <div className="flex gap-2 mb-4">
+              <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-pdt-dark text-white">Power Users</span>
+            </div>
+            <div className="text-3xl mb-4">✨</div>
+            <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">MCP Files for Claude</h3>
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
+              A structured zip that lets Claude search and cite your ChatGPT history in real time. Brings your past thinking into every future conversation. This is the foundation — once connected, it unlocks the other tools locally on your machine.
+            </p>
+          </div>
+          {/* Card 2 — Networking Card */}
           <div className="border border-[var(--card-border)] rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all">
             <div className="flex gap-2 mb-4">
               <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-green-light text-pdt-dark">FREE</span>
@@ -45,28 +57,20 @@ export default function Home() {
             <div className="text-3xl mb-4">🪪</div>
             <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">Networking Card</h3>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
-              A phone-ready PNG showing your top projects, interests, and thinking style. Show it at meetups. Skip the small talk.
+              A phone-ready PNG showing your top projects, interests, and thinking style. We believe technology should help us relate better to ourselves, each other, and the world. Generate yours and share it at your next local event to find collaborators and friends more quickly.
             </p>
           </div>
-          <div className="border border-[var(--card-border)] rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all">
+          {/* Card 3 — Caricature (coming soon) */}
+          <div className="border border-[var(--card-border)] rounded-xl p-6 opacity-75">
             <div className="flex gap-2 mb-4">
-              <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-green-light text-pdt-dark">FREE</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-gray-200 text-[var(--text-muted)]">Coming Soon</span>
             </div>
-            <div className="text-3xl mb-4">🎭</div>
+            <div className="text-3xl mb-4 grayscale-[30%]">🎭</div>
             <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">Caricature</h3>
-            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
               An illustrated portrait of how you think — not how you look. Generated from your worldview lenses and project patterns. Strange, accurate, shareable.
             </p>
-          </div>
-          <div className="border border-[var(--card-border)] rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all">
-            <div className="flex gap-2 mb-4">
-              <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-gray-100 text-[var(--text-secondary)]">POWER USERS</span>
-            </div>
-            <div className="text-3xl mb-4">✨</div>
-            <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">MCP Files for Claude</h3>
-            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
-              A structured zip that lets Claude search and cite your ChatGPT history in real time. Brings your past thinking into every future conversation.
-            </p>
+            <span className="text-[12px] text-[var(--text-muted)] italic">Available soon</span>
           </div>
         </div>
       </section>
@@ -157,10 +161,10 @@ export default function Home() {
       {/* MCP banner */}
       <section className="bg-pdt-dark text-center py-16 px-6 md:px-8">
         <h2 className="font-serif-pdt text-3xl font-normal text-white mb-3">
-          Learn about MCP &amp; how it can leverage your data
+          Connect your data to Claude
         </h2>
         <p className="text-sm text-white/70 max-w-[520px] mx-auto mb-7 leading-relaxed">
-          When you upload your history we transform it into the file structure you need to run your own MCP using Claude.
+          When you upload your history, we transform it into files you can plug into Claude using MCP — a way for AI tools to access your personal data locally, on your terms.
         </p>
         <a
           href="https://docs.anthropic.com/en/docs/build-with-claude/mcp"
@@ -168,7 +172,7 @@ export default function Home() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 border border-white/40 text-white py-3 px-7 rounded-lg text-sm font-semibold no-underline hover:bg-white/10 transition-colors"
         >
-          MCP Setup Instructions →
+          Setup Guide →
         </a>
       </section>
 
@@ -182,9 +186,9 @@ export default function Home() {
             </h2>
             <div className="space-y-6">
               {[
-                { title: "Client-side JavaScript only", desc: "Your file is processed entirely in your browser using your device's compute. Nothing is uploaded anywhere." },
-                { title: "No database, nothing to breach", desc: "We don't store anything. There's no account system. Closing this tab destroys all processed data permanently." },
-                { title: "One exception: caricature generation", desc: "Generating your caricature sends a short text prompt (your lenses and project types — no raw conversation text) to an image API. We explain this clearly before you use it." },
+                { title: "Client-side JavaScript only", desc: "Your file is processed entirely in your browser using your device\u2019s compute. Nothing is uploaded anywhere." },
+                { title: "No database, nothing to breach", desc: "We don\u2019t store anything. There\u2019s no account system. Closing this tab destroys all processed data permanently." },
+                { title: "AI features are opt-in only", desc: "Some features \u2014 like generating your caricature or networking card \u2014 can use Claude\u2019s API to process limited, non-conversational parts of your data (your lenses and project types, never raw conversations). You always choose when to share, and you can generate these artifacts yourself using your local MCP instead." },
                 { title: "Privacy-preserving analytics only", desc: "We use Plausible (not Google Analytics) for simple page-view counts. No behavioral tracking, no fingerprinting." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-3">
@@ -214,22 +218,13 @@ export default function Home() {
               <div className="text-center text-[var(--text-muted)] text-sm">↓</div>
               <div className="bg-white border border-[var(--border)] rounded-lg py-3 px-4 border-l-4 border-l-green-accent">
                 <div className="font-semibold text-xs">📦 Outputs (Download)</div>
-                <div className="text-[11px] text-[var(--text-secondary)]">MCP Files · PDF · Caricature</div>
+                <div className="text-[11px] text-[var(--text-secondary)]">MCP Files · Networking Card · Caricature</div>
               </div>
               <div className="text-center text-[var(--text-muted)] text-sm">↓</div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="bg-white border border-[var(--border)] rounded-lg py-2 px-3 text-[11px]">
-                  <div className="font-semibold">• Short text prompt only</div>
-                  <div className="text-[var(--text-secondary)]">(caricature only)</div>
-                </div>
-                <div className="bg-white border border-[var(--border)] rounded-lg py-2 px-3 text-[11px]">
-                  <div className="font-semibold">• Image API</div>
-                  <div className="text-[var(--text-secondary)]">(caricature)</div>
-                </div>
+              <div className="bg-white border border-[var(--border)] rounded-lg py-3 px-4">
+                <div className="font-semibold text-xs">🔒 AI features (opt-in only)</div>
+                <div className="text-[11px] text-[var(--text-secondary)]">Sends lenses &amp; project types only — never raw conversations. You can always use your local MCP instead.</div>
               </div>
-              <p className="text-[10px] text-[var(--text-muted)] italic leading-snug mt-3">
-                <strong>Even paths:</strong> Caricature sends text prompts only. No image API metadata; only accepts prompts, not files or conversation text.
-              </p>
             </div>
           </div>
         </div>
@@ -238,14 +233,14 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-[var(--border)] py-6 px-6 md:px-8">
         <div className="max-w-[960px] mx-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="font-mono-pdt font-bold text-[15px] text-pdt-dark">pdt.com</div>
+          <div className="font-mono-pdt font-bold text-[15px] text-pdt-dark">chatgpt.pdt</div>
           <div className="flex gap-6">
             <a href="#how" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">How it works</a>
             <a href="#privacy" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">Privacy</a>
-            <a href="#" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
-            <a href="https://bloomnetwork.org" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">Bloom Network</a>
+            <a href="#github" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
+            <a href="https://citizeninfra.org" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">CIBC</a>
           </div>
-          <div className="text-[12px] text-[var(--text-muted)]">© 2024 PDT · Your Data, Always</div>
+          <div className="text-[12px] text-[var(--text-muted)]">© 2025 Citizen Infrastructure · Your Data, Always</div>
         </div>
       </footer>
     </main>
