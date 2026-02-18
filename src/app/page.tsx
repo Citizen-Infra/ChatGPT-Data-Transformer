@@ -291,35 +291,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Projects — transformer cards + compact table */}
+        {/* Projects — compact table + product cards */}
         <div className="mb-10">
           <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Projects</div>
 
-          {/* Data Transformer cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-            {/* ChatGPT — current site, active */}
-            <div className="relative border-2 border-pdt-dark rounded-[14px] bg-white px-5 py-5">
-              <span className="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded-full bg-pdt-dark text-white">You are here</span>
-              <div className="text-2xl mb-2">💬</div>
-              <h4 className="text-[15px] font-bold text-[var(--text-primary)] mb-1">ChatGPT Data Transformer</h4>
-              <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed">
-                Export your ChatGPT history into portable, structured files you own &mdash; MCP-ready for Claude, shareable as networking cards.
-              </p>
-            </div>
-            {/* Claude — links to other site */}
-            <a href="https://claude-data-transformer.vercel.app/#upload" className="block border border-[var(--border)] rounded-[14px] bg-white px-5 py-5 no-underline hover:border-[#d5d0ca] hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.03)] hover:-translate-y-px transition-all">
-              <div className="text-2xl mb-2">🟣</div>
-              <h4 className="text-[15px] font-bold text-[var(--text-primary)] mb-1">Claude Data Transformer</h4>
-              <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed mb-2">
-                Do the same for your Claude conversation history &mdash; portable, structured, yours.
-              </p>
-              <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-pdt-dark">
-                Try it &rarr;
-              </span>
-            </a>
-          </div>
-
-          <div className="border border-[var(--border)] rounded-xl overflow-hidden">
+          <div className="border border-[var(--border)] rounded-xl overflow-hidden mb-6">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-green-light/50">
@@ -340,6 +316,53 @@ export default function Home() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Data Transformer product cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* ChatGPT — active (current site) */}
+            <div
+              className="flex flex-col gap-4 rounded-2xl p-7"
+              style={{
+                background: "#F2FAF5",
+                border: "1px solid #C2DFD0",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(45,106,79,0.08)",
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-[11px] font-semibold tracking-[0.5px] uppercase text-[#6B7D73]">ChatGPT</span>
+                <span className="text-[10px] font-semibold tracking-[0.5px] uppercase text-white bg-[#1E5C40] py-1 px-2.5 rounded-full leading-none">You are here</span>
+              </div>
+              <h3 className="font-serif-pdt text-[22px] font-normal leading-tight text-[#1A1F1C]">ChatGPT Data Transformer</h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5750]">
+                Analyze your ChatGPT export &mdash; see your usage signature, topics, and conversation patterns. Same privacy-first approach, built for OpenAI&apos;s format.
+              </p>
+              <a href="#upload" className="text-[14px] font-semibold text-[#2D6A4F] no-underline hover:text-[#1E5C40] transition-colors mt-auto">
+                Get started &rarr;
+              </a>
+            </div>
+
+            {/* Claude — links to other site */}
+            <a
+              href="https://claude-data-transformer.vercel.app/#upload"
+              className="flex flex-col gap-4 rounded-2xl p-7 no-underline hover:-translate-y-px transition-all"
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid #DDE8E2",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(45,106,79,0.08)",
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-[11px] font-semibold tracking-[0.5px] uppercase text-[#6B7D73]">Claude</span>
+              </div>
+              <h3 className="font-serif-pdt text-[22px] font-normal leading-tight text-[#1A1F1C]">Claude Data Transformer</h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5750]">
+                Analyze your Claude export &mdash; discover your usage patterns and get matched with Skills that make your workflows more efficient.
+              </p>
+              <span className="text-[14px] font-semibold text-[#2D6A4F] mt-auto">
+                Visit tool &rarr;
+              </span>
+            </a>
           </div>
         </div>
 
