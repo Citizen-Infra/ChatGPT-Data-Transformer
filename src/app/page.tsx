@@ -169,7 +169,6 @@ export default function Home() {
           </div>
           <div>
             <div className="bg-cream border-2 border-dashed border-[var(--card-border)] rounded-xl p-10 md:p-12 flex flex-col items-center">
-              <div className="w-14 h-14 bg-amber-100 rounded-lg flex items-center justify-center text-3xl mb-5">📂</div>
               <UploadSection variant="dropzone" />
               <p className="text-[11px] text-[var(--text-muted)] mt-5 text-center">Large files (150k+ words) may take 30–60 seconds. Keep this tab open.</p>
             </div>
@@ -245,6 +244,90 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          CIBC — Citizen Infrastructure Builders Club
+          ═══════════════════════════════════════════════════════════ */}
+      <section id="cibc" className="max-w-[960px] mx-auto px-6 md:px-8 py-20 border-t border-[var(--border)]">
+        <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-3">Who We Are</div>
+        <h2 className="font-serif-pdt text-3xl md:text-[2.25rem] font-normal text-[var(--text-primary)] leading-tight mb-8">
+          Citizen Infrastructure Builders
+        </h2>
+
+        {/* Buckminster Fuller quote */}
+        <blockquote className="border-l-4 border-green-accent pl-6 py-2 mb-10">
+          <p className="font-serif-pdt text-lg md:text-xl italic text-[var(--text-primary)] leading-relaxed mb-2">
+            &ldquo;If you want to teach people a new way of thinking, don&apos;t bother trying to teach them. Instead, give them a tool, the use of which will lead to new ways of thinking.&rdquo;
+          </p>
+          <cite className="text-[13px] text-[var(--text-muted)] not-italic">&mdash; Buckminster Fuller</cite>
+        </blockquote>
+
+        {/* Body copy */}
+        <div className="max-w-[680px] space-y-4 mb-10">
+          <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+            We build digital pitchforks &mdash; citizen infrastructure that teaches collective action, solidarity, and shared stewardship through use. Not apps or platforms in the traditional sense, but tools crafted to reshape how people relate to each other and to their communities.
+          </p>
+          <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+            In an age of techno-feudalism, where digital platforms have replaced markets with fiefdoms and users have become digital serfs, the antidote is not better regulation of feudal tools &mdash; it&apos;s building tools that nurture citizen empowerment and the people&apos;s capacity to act together.
+          </p>
+        </div>
+
+        {/* Principles — badges/tags */}
+        <div className="mb-10">
+          <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Principles</div>
+          <div className="flex flex-wrap gap-2">
+            {[
+              "Pedagogical by design",
+              "Ownership-enabling",
+              "Solidarity-building",
+              "Sovereignty-preserving",
+              "Interoperable",
+              "Antifragile",
+            ].map((p) => (
+              <span key={p} className="text-[12px] font-medium py-1.5 px-3.5 rounded-full bg-green-light text-pdt-dark border border-green-badge">
+                {p}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Projects — compact table */}
+        <div className="mb-10">
+          <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Projects</div>
+          <div className="border border-[var(--border)] rounded-xl overflow-hidden">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-green-light/50">
+                  <th className="text-left py-3 px-4 text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)]">Project</th>
+                  <th className="text-left py-3 px-4 text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)]">Description</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--border)]">
+                {[
+                  { name: "my-community", desc: "Community dashboard Chrome extension \u2014 Bluesky feed, curated digest, participation opportunities" },
+                  { name: "dear-neighbors", desc: "Neighborhood dashboard Chrome extension \u2014 community-curated local news + participation opportunities" },
+                  { name: "nsrt", desc: "Novi Sad Relational Tech \u2014 neighborhood tools for Novi Sad residents" },
+                ].map((proj) => (
+                  <tr key={proj.name}>
+                    <td className="py-3 px-4 font-mono-pdt text-[13px] font-medium text-pdt-dark whitespace-nowrap align-top">{proj.name}</td>
+                    <td className="py-3 px-4 text-[13px] text-[var(--text-secondary)] leading-relaxed">{proj.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Ecosystem mention */}
+        <p className="text-[13px] text-[var(--text-muted)] mb-8">
+          Part of a larger ecosystem connecting with Metagov, Newspeak House, Civic Tech Field Guide, Life Itself, and the Relational Tech Project.
+        </p>
+
+        {/* CTA */}
+        <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
+          Join us on GitHub &rarr;
+        </a>
       </section>
 
       {/* Footer */}
