@@ -13,6 +13,27 @@ import { ZipBanner } from "./ZipBanner";
 
 const USAGE_BAR_COLORS = ["#1a3a2a", "#2d5a3f", "#3d7a56", "#8cc5a0"];
 
+/** Format an ISO date string into "Mon YYYY" */
+function formatShortDate(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+
+const CIBC_PRINCIPLES = [
+  "Pedagogical by design",
+  "Ownership-enabling",
+  "Solidarity-building",
+  "Sovereignty-preserving",
+  "Interoperable",
+  "Antifragile",
+];
+
+const CIBC_PROJECTS = [
+  { name: "my-community", desc: "Community dashboard Chrome extension — Bluesky feed, curated digest, participation opportunities" },
+  { name: "dear-neighbors", desc: "Neighborhood dashboard Chrome extension — community-curated local news + participation opportunities" },
+  { name: "nsrt", desc: "Novi Sad Relational Tech — neighborhood tools for Novi Sad residents" },
+];
+
 
 export function ResultsView() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
@@ -81,6 +102,11 @@ export function ResultsView() {
     ? Math.max(1, Math.round((new Date(snapshot.date_range.last).getTime() - new Date(snapshot.date_range.first).getTime()) / (365.25 * 24 * 60 * 60 * 1000)))
     : 0;
 
+  /* Active Since date range — e.g. "Mar 2022 – Jan 2025" */
+  const activeSince = snapshot.date_range.first && snapshot.date_range.last
+    ? `${formatShortDate(snapshot.date_range.first)} – ${formatShortDate(snapshot.date_range.last)}`
+    : "—";
+
   return (
     <>
       <Nav variant="landing" />
@@ -96,7 +122,9 @@ export function ResultsView() {
         </p>
       </section>
 
-      {/* Stats banner — simple 4-stat rollup */}
+      {/* ═══════════════════════════════════════════════════════════
+          STATS BANNER — 4 stats: Conversations | Messages | Years | Active Since
+          ═══════════════════════════════════════════════════════════ */}
       <div className="max-w-[960px] mx-auto px-6 md:px-8 -mt-7 relative z-10">
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--border)]">
@@ -113,8 +141,8 @@ export function ResultsView() {
               <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Years of History</div>
             </div>
             <div className="p-6 md:p-8 text-center">
-              <div className="font-serif-pdt text-3xl md:text-4xl font-normal text-[var(--text-primary)] leading-tight">{snapshot.top_projects.length}</div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Projects Detected</div>
+              <div className="font-serif-pdt text-lg md:text-xl font-normal text-[var(--text-primary)] leading-tight mt-1">{activeSince}</div>
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Active Since</div>
             </div>
           </div>
         </div>
@@ -183,9 +211,33 @@ export function ResultsView() {
         </div>
 
 
-        {/* Caricature + MCP — side by side */}
-        <div className="max-w-[960px] mx-auto px-6 md:px-8 pt-14 pb-16">
+        {/* ═══════════════════════════════════════════════════════════
+            MCP FILES + CARICATURE — side by side, MCP on LEFT (dark), Caricature on RIGHT (light)
+            ═══════════════════════════════════════════════════════════ */}
+        <div className="pt-14 pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* MCP Files card — dark background, visual anchor */}
+            <div className="bg-pdt-dark rounded-xl p-8">
+              <div className="text-4xl mb-3">📁</div>
+              <div className="flex gap-2 items-center mb-2 flex-wrap">
+                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-white/15 text-white inline-flex items-center gap-1">◆ Power Users</span>
+                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-green-accent/30 text-green-light">FREE</span>
+                <span className="text-[10px] text-white/50">· REQUIRES CLAUDE DESKTOP</span>
+              </div>
+              <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight text-white">MCP Files for Claude</h3>
+              <p className="text-[13px] text-white/70 leading-relaxed mb-3">
+                You&apos;re downloading the <strong className="text-white/90">file structure</strong> for your own Claude MCP server. Once set up, Claude can search and cite your full ChatGPT history — projects, evidence, and usage patterns — in real time.
+              </p>
+              <p className="text-[13px] text-white/60 mb-4">The zip contains the schema, evidence excerpts, and metadata. Claude does the deep synthesis when you connect it. Setup takes about 15 minutes.</p>
+              <a href="https://docs.anthropic.com/en/docs/build-with-claude/mcp" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-2 border-white/30 text-white bg-white/10 py-2.5 px-5 rounded-lg text-sm font-semibold w-fit no-underline hover:bg-white/20 transition-colors mb-4">
+                View setup guide
+              </a>
+              <p id="files-explained" className="text-[11px] text-white/40 leading-snug">
+                Includes: <code className="font-mono-pdt text-white/50">index.json</code> · <code className="font-mono-pdt text-white/50">overview.md</code> · <code className="font-mono-pdt text-white/50">usage_modes.json</code> · <code className="font-mono-pdt text-white/50">projects.json</code> · <code className="font-mono-pdt text-white/50">concepts.json</code> · <code className="font-mono-pdt text-white/50">evidence.json</code>
+              </p>
+            </div>
+
+            {/* Caricature card — light background */}
             <div className="border border-[var(--card-border)] rounded-xl p-8">
               <div className="text-4xl mb-3">🎭</div>
               <div className="flex gap-2 mb-2">
@@ -203,80 +255,129 @@ export function ResultsView() {
                 Generate my caricature →
               </button>
             </div>
-            <div className="border border-[var(--card-border)] rounded-xl p-8">
-              <div className="text-4xl mb-3">📁</div>
-              <div className="flex gap-2 items-center mb-2 flex-wrap">
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-pdt-dark text-white inline-flex items-center gap-1">◆ Power Users</span>
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-green-light text-pdt-dark">FREE</span>
-                <span className="text-[10px] text-[var(--text-muted)]">· REQUIRES CLAUDE DESKTOP</span>
+          </div>
+        </div>
+
+
+        {/* ═══════════════════════════════════════════════════════════
+            NETWORKING CARD — Customization + download
+            ═══════════════════════════════════════════════════════════ */}
+        <div className="pt-14 pb-10 border-t border-[var(--border)]">
+          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-2">Your Card</div>
+          <h2 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] mb-8 leading-tight">Customize &amp; Download</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            <div className="md:col-span-1 flex flex-col gap-4">
+              <div>
+                <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1.5">Display Name</label>
+                <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="Your name" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
               </div>
-              <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight">MCP Files for Claude</h3>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
-                You&apos;re downloading the <strong>file structure</strong> for your own Claude MCP server. Once set up, Claude can search and cite your full ChatGPT history — projects, evidence, and usage patterns — in real time.
-              </p>
-              <p className="text-[13px] text-[var(--text-secondary)] mb-4">The zip contains the schema, evidence excerpts, and metadata. Claude does the deep synthesis when you connect it. Setup takes about 15 minutes.</p>
-              <a href="https://docs.anthropic.com/en/docs/build-with-claude/mcp" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white py-2.5 px-5 rounded-lg text-sm font-semibold w-fit no-underline hover:bg-pdt-dark hover:text-white transition-colors mb-4">
-                View setup guide
-              </a>
-              <p className="text-[11px] text-[var(--text-muted)] leading-snug">
-                Includes: <code className="font-mono-pdt">index.json</code> · <code className="font-mono-pdt">overview.md</code> · <code className="font-mono-pdt">usage_modes.json</code> · <code className="font-mono-pdt">projects.json</code> · <code className="font-mono-pdt">concepts.json</code> · <code className="font-mono-pdt">evidence.json</code>
-              </p>
+              <div>
+                <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1.5">Role / Title</label>
+                <input type="text" value={role} onChange={(e) => setRole(e.target.value)} placeholder="e.g. Designer, Engineer" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
+              </div>
+              <div>
+                <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1.5">Location</label>
+                <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Houston, TX" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
+              </div>
+              <button type="button" onClick={handleDownloadCard} className="mt-2 inline-flex items-center justify-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-green-mid transition-colors w-full">
+                Download Card PNG →
+              </button>
+            </div>
+            <div className="md:col-span-2 flex justify-center">
+              <div className="w-[320px] shadow-lg rounded-xl overflow-hidden">
+                <NetworkingCardInner snapshot={snapshot} customization={customization} />
+              </div>
             </div>
           </div>
         </div>
 
 
         {/* ═══════════════════════════════════════════════════════════
-            FIND YOUR PEOPLE — Bloom CTA + chapters
+            CIBC — Citizen Infrastructure Builders Club
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 border-t border-[var(--border)]">
-          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-3">Find Your People</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div>
-              <h3 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] leading-tight mb-4">Your card was built for this moment.</h3>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
-                Bloom Network is a global community of people working on regenerative innovation. There&apos;s a chapter in Houston — and growing in cities everywhere. Show up with your card. Find the people working on what you care about.
-              </p>
-              <a href="https://bloomnetwork.org" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
-                Find a Bloom chapter near you →
-              </a>
-            </div>
-            <div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Bloom Chapters</div>
-              <div className="flex flex-col gap-3">
-                {[
-                  { city: "Houston, TX", active: true, you: true },
-                  { city: "Austin, TX", active: true },
-                  { city: "Portland, OR", active: true },
-                  { city: "Oakland, CA", active: true },
-                  { city: "Denver, CO", active: false, coming: true },
-                  { city: "Chicago, IL", active: false, coming: true },
-                ].map((c) => (
-                  <div key={c.city} className="flex items-center gap-2.5 text-sm">
-                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${c.active ? "bg-green-accent" : "bg-[var(--card-border)]"}`} />
-                    <span className={c.you ? "font-bold text-pdt-dark" : "text-[var(--text-primary)] font-medium"}>
-                      {c.city}{c.you ? " — you" : ""}{c.coming ? " — coming soon" : ""}
-                    </span>
-                  </div>
-                ))}
-              </div>
+          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-3">Who We Are</div>
+          <h2 className="font-serif-pdt text-3xl md:text-[2.25rem] font-normal text-[var(--text-primary)] leading-tight mb-8">
+            Citizen Infrastructure Builders
+          </h2>
+
+          {/* Buckminster Fuller quote */}
+          <blockquote className="border-l-4 border-green-accent pl-6 py-2 mb-10">
+            <p className="font-serif-pdt text-lg md:text-xl italic text-[var(--text-primary)] leading-relaxed mb-2">
+              &ldquo;If you want to teach people a new way of thinking, don&apos;t bother trying to teach them. Instead, give them a tool, the use of which will lead to new ways of thinking.&rdquo;
+            </p>
+            <cite className="text-[13px] text-[var(--text-muted)] not-italic">— Buckminster Fuller</cite>
+          </blockquote>
+
+          {/* Body copy */}
+          <div className="max-w-[680px] space-y-4 mb-10">
+            <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+              We build digital pitchforks — citizen infrastructure that teaches collective action, solidarity, and shared stewardship through use. Not apps or platforms in the traditional sense, but tools crafted to reshape how people relate to each other and to their communities.
+            </p>
+            <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+              In an age of techno-feudalism, where digital platforms have replaced markets with fiefdoms and users have become digital serfs, the antidote is not better regulation of feudal tools — it&apos;s building tools that nurture citizen empowerment and the people&apos;s capacity to act together.
+            </p>
+          </div>
+
+          {/* Principles — badges/tags */}
+          <div className="mb-10">
+            <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Principles</div>
+            <div className="flex flex-wrap gap-2">
+              {CIBC_PRINCIPLES.map((p) => (
+                <span key={p} className="text-[12px] font-medium py-1.5 px-3.5 rounded-full bg-green-light text-pdt-dark border border-green-badge">
+                  {p}
+                </span>
+              ))}
             </div>
           </div>
+
+          {/* Projects — compact table */}
+          <div className="mb-10">
+            <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Projects</div>
+            <div className="border border-[var(--border)] rounded-xl overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-green-light/50">
+                    <th className="text-left py-3 px-4 text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)]">Project</th>
+                    <th className="text-left py-3 px-4 text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--border)]">
+                  {CIBC_PROJECTS.map((proj) => (
+                    <tr key={proj.name}>
+                      <td className="py-3 px-4 font-mono-pdt text-[13px] font-medium text-pdt-dark whitespace-nowrap align-top">{proj.name}</td>
+                      <td className="py-3 px-4 text-[13px] text-[var(--text-secondary)] leading-relaxed">{proj.desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Ecosystem mention */}
+          <p className="text-[13px] text-[var(--text-muted)] mb-8">
+            Part of a larger ecosystem connecting with Metagov, Newspeak House, Civic Tech Field Guide, Life Itself, and the Relational Tech Project.
+          </p>
+
+          {/* CTA */}
+          <a href="#github" className="inline-flex items-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
+            Join us on GitHub →
+          </a>
         </div>
       </div>
 
 
-      {/* Footer — same as landing */}
+      {/* Footer */}
       <footer className="border-t border-[var(--border)] mt-8 py-6 px-6 md:px-8">
         <div className="max-w-[960px] mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="font-mono-pdt font-bold text-[15px] text-pdt-dark">pdt.com</div>
           <div className="flex gap-6">
             <a href="/#how" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">How it works</a>
             <a href="/#privacy" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">Privacy</a>
-            <a href="#" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
-            <a href="https://bloomnetwork.org" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">Bloom Network</a>
+            <a href="#github" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">GitHub</a>
+            <a href="https://citizeninfra.org" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)]">CIBC</a>
           </div>
-          <div className="text-[12px] text-[var(--text-muted)]">© 2024 PDT · Your Data, Always</div>
+          <div className="text-[12px] text-[var(--text-muted)]">© 2025 Citizen Infrastructure · Your Data, Always</div>
         </div>
       </footer>
     </>
