@@ -17,18 +17,13 @@ export default function Home() {
         <div className="max-w-[480px] mx-auto">
           <UploadSection variant="hero" />
           <p className="text-xs text-[var(--text-muted)] mt-4">
-            From your ChatGPT data export · JSON file only
+            From your ChatGPT data export &middot; JSON file only &middot;{" "}
+            <a href="#privacy" className="text-[var(--text-muted)] underline hover:text-pdt-dark transition-colors">
+              see how it works &rarr;
+            </a>
           </p>
-          <div className="inline-block mt-3 bg-green-badge text-pdt-dark py-2.5 px-5 rounded-full text-center">
-            <div className="text-[13px] font-medium">
-              No account. No storage. No servers. Everything runs in your browser.
-            </div>
-            <div className="text-[12px] text-pdt-dark/60 mt-1">
-              Your data never leaves your device &mdash;{" "}
-              <a href="#privacy" className="text-pdt-dark/80 underline hover:text-pdt-dark transition-colors">
-                see how it works
-              </a>
-            </div>
+          <div className="inline-block mt-3 bg-green-badge text-pdt-dark py-2 px-5 rounded-full text-[13px] font-medium">
+            No account. No storage. No servers. Everything runs in your browser.
           </div>
         </div>
       </section>

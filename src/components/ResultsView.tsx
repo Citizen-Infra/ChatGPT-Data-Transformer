@@ -1,12 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import html2canvas from "html2canvas";
 import { PDT_SNAPSHOT_KEY } from "@/lib/types";
 import type { Snapshot } from "@/lib/types";
-import type { CardCustomization } from "./NetworkingCard";
-import { NetworkingCardInner } from "./NetworkingCard";
 import { Nav } from "./Nav";
 import { SubNav } from "./SubNav";
 import { ZipBanner } from "./ZipBanner";
@@ -37,12 +34,6 @@ const CIBC_PROJECTS = [
 
 export function ResultsView() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
-  const [displayName, setDisplayName] = useState("");
-  const [role, setRole] = useState("");
-  const [location, setLocation] = useState("");
-  const [showCardForm, setShowCardForm] = useState(false);
-  const [cardGenerated, setCardGenerated] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -57,25 +48,6 @@ export function ResultsView() {
       setSnapshot(null);
     }
   }, []);
-
-  const handleDownloadCard = async () => {
-    if (!cardRef.current || !snapshot) return;
-    try {
-      const canvas = await html2canvas(cardRef.current, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: "#ffffff",
-      });
-      const link = document.createElement("a");
-      link.download = "pdt-networking-card.png";
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-      setCardGenerated(true);
-    } catch (e) {
-      console.error("Download failed", e);
-    }
-  };
 
   if (snapshot === null) {
     return (
@@ -95,11 +67,6 @@ export function ResultsView() {
     );
   }
 
-  const customization: CardCustomization = {
-    displayName: displayName || undefined,
-    role: role || undefined,
-    location: location || undefined,
-  };
   const topUsage = snapshot.usage_signature.filter((u) => u.pct > 0).slice(0, 4);
   const yearsOfHistory = snapshot.date_range.first && snapshot.date_range.last
     ? Math.max(1, Math.round((new Date(snapshot.date_range.last).getTime() - new Date(snapshot.date_range.first).getTime()) / (365.25 * 24 * 60 * 60 * 1000)))
@@ -149,11 +116,6 @@ export function ResultsView() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Hidden card for PNG capture */}
-      <div ref={cardRef} className="absolute -left-[9999px] w-[320px]" aria-hidden="true">
-        <NetworkingCardInner snapshot={snapshot} customization={customization} />
       </div>
 
       <ZipBanner />
@@ -219,8 +181,8 @@ export function ResultsView() {
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* MCP Files card — dark background, visual anchor */}
-            <div className="bg-pdt-dark rounded-xl p-8">
+            {/* MCP Files card — dark background, concise entry point */}
+            <div className="bg-pdt-dark rounded-xl p-8 flex flex-col">
               <div className="text-4xl mb-3">📁</div>
               <div className="flex gap-2 items-center mb-2 flex-wrap">
                 <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-white/15 text-white inline-flex items-center gap-1">◆ Power Users</span>
@@ -229,122 +191,38 @@ export function ResultsView() {
               </div>
               <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight text-white">MCP Files for Claude</h3>
               <p className="text-[13px] text-white/70 leading-relaxed mb-3">
-                You&apos;re downloading the <strong className="text-white/90">file structure</strong> for your own Claude MCP server. Once set up, Claude can search and cite your full ChatGPT history — projects, evidence, and usage patterns — in real time.
+                Your files are ready. Connect them to Claude Desktop and get instant access to your full ChatGPT history &mdash; searchable, citable, and running entirely on your machine.
               </p>
-              <p className="text-[13px] text-white/60 mb-2">The zip contains the schema, evidence excerpts, and metadata. Claude does the deep synthesis when you connect it. Setup takes about 15 minutes.</p>
-              <p className="text-[13px] text-white/60 mb-4">Once connected, you can generate your networking card and other artifacts locally — no API needed.</p>
-              <Link href="/mcp-setup" className="inline-flex items-center gap-2 border-2 border-white/30 text-white bg-white/10 py-2.5 px-5 rounded-lg text-sm font-semibold w-fit no-underline hover:bg-white/20 transition-colors mb-4">
-                View setup guide
-              </Link>
-              <p id="files-explained" className="text-[11px] text-white/40 leading-snug">
-                Includes: <code className="font-mono-pdt text-white/50">index.json</code> · <code className="font-mono-pdt text-white/50">overview.md</code> · <code className="font-mono-pdt text-white/50">usage_modes.json</code> · <code className="font-mono-pdt text-white/50">projects.json</code> · <code className="font-mono-pdt text-white/50">concepts.json</code> · <code className="font-mono-pdt text-white/50">evidence.json</code>
+              <p className="text-[13px] text-white/60 mb-6">
+                This is the foundation. Once connected, you can generate networking cards, explore your thinking patterns, and build on years of past conversations &mdash; all locally, with no data leaving your device.
               </p>
+              <div className="mt-auto">
+                <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark py-2.5 px-6 rounded-lg text-sm font-semibold no-underline hover:bg-gray-100 transition-colors">
+                  Get set up &rarr;
+                </Link>
+              </div>
             </div>
 
-            {/* Networking Card — light background */}
-            <div className="border border-[var(--card-border)] rounded-xl p-8">
+            {/* Networking Card — light background, concise entry point */}
+            <div className="border border-[var(--card-border)] rounded-xl p-8 flex flex-col">
               <div className="text-4xl mb-3">🪪</div>
               <div className="flex gap-2 mb-2">
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-green-light text-pdt-dark">FREE</span>
                 <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-pdt-dark text-white">NEW</span>
               </div>
               <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight">Your Networking Card</h3>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-2">
-                A phone-ready PNG that shows your top projects, interests, thinking style, and how you use AI — pulled directly from your ChatGPT history. Not a resume. Not a LinkedIn profile. A real snapshot of how your mind works.
+              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
+                A shareable snapshot of your projects, interests, and thinking style &mdash; pulled from your ChatGPT history. Share it at your next meetup or community event to skip the small talk and find collaborators faster.
               </p>
-              <Link href="/networking-card" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline inline-block mb-3">
-                Learn more about networking cards &rarr;
-              </Link>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-2">
-                <strong className="text-[var(--text-primary)]">What it&apos;s for:</strong> Share it at meetups, conferences, or local events to skip the small talk and find collaborators, co-builders, and friends faster.
+              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
+                We believe technology should help us relate better to ourselves, each other, and the world. Your card is a small step in that direction.
               </p>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-4">
-                <strong className="text-[var(--text-primary)]">What&apos;s on it:</strong> Your top project themes &amp; interest areas, how you use AI, active projects with date ranges, and your name, role, and location (you choose what to include).
+              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-6">
+                You choose how it&apos;s made: generate it here using our API, or create it yourself locally through your MCP. Your data, your call.
               </p>
-
-              {/* Two generation options — equal visual weight */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                {/* Option A — Generate now (uses API) */}
-                <div className="border border-[var(--border)] rounded-lg p-4 bg-green-light/30">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-pdt-dark mb-2">Option A · Generate now</div>
-                  <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed mb-3">
-                    We&apos;ll use Claude&apos;s API to generate your card in this session. Only your lenses, project types, and usage patterns are shared — never your raw conversations.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setShowCardForm(!showCardForm)}
-                    className="inline-flex items-center gap-2 bg-pdt-dark text-white py-2 px-4 rounded-lg text-[13px] font-semibold hover:bg-green-mid transition-colors w-full justify-center"
-                  >
-                    {showCardForm ? "Close" : "Generate my card →"}
-                  </button>
-                </div>
-                {/* Option B — Generate locally (MCP) */}
-                <div className="border border-[var(--border)] rounded-lg p-4">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">Option B · Use local MCP</div>
-                  <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed mb-3">
-                    Already set up your MCP? Generate your networking card locally using Claude Desktop. Your data never leaves your machine.
-                  </p>
-                  <Link
-                    href="/networking-card#prompt"
-                    className="inline-flex items-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white py-2 px-4 rounded-lg text-[13px] font-semibold w-full justify-center no-underline hover:bg-green-light transition-colors"
-                  >
-                    View local instructions &rarr;
-                  </Link>
-                </div>
-              </div>
-
-              {/* Privacy footnote */}
-              <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
-                Either way, your raw conversations are never shared.{" "}
-                <Link href="/#privacy" className="underline hover:text-[var(--text-secondary)]">Learn more about our privacy approach</Link>
-              </p>
-
-              {/* Inline customization flow — collapsible panel */}
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showCardForm ? "max-h-[600px] mt-5" : "max-h-0"}`}>
-                <div className="border-t border-[var(--border)] pt-5">
-                  <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Personalize your card</div>
-                  <div className="flex flex-col gap-3 mb-4">
-                    <div>
-                      <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1">Display Name</label>
-                      <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="Your name" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
-                    </div>
-                    <div>
-                      <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1">Role / Title</label>
-                      <input type="text" value={role} onChange={(e) => setRole(e.target.value)} placeholder="e.g. Designer, Engineer" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
-                    </div>
-                    <div>
-                      <label className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] block mb-1">Location</label>
-                      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Houston, TX" className="w-full border border-[var(--border)] rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-green-accent" />
-                    </div>
-                  </div>
-                  <p className="text-[11px] text-[var(--text-muted)] italic mb-4">These details are added to your card locally — they&apos;re not sent to any API.</p>
-                  <button
-                    type="button"
-                    onClick={handleDownloadCard}
-                    className="inline-flex items-center justify-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-green-mid transition-colors w-full"
-                  >
-                    Generate &amp; Download →
-                  </button>
-
-                  {/* Card preview + re-download after generation */}
-                  {cardGenerated && (
-                    <div className="mt-5 pt-5 border-t border-[var(--border)]">
-                      <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Your card</div>
-                      <div className="flex justify-center mb-4">
-                        <div className="w-[280px] shadow-lg rounded-xl overflow-hidden">
-                          <NetworkingCardInner snapshot={snapshot} customization={customization} />
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={handleDownloadCard}
-                        className="inline-flex items-center justify-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white rounded-lg py-2.5 px-5 text-sm font-semibold hover:bg-green-light transition-colors w-full"
-                      >
-                        Download again →
-                      </button>
-                    </div>
-                  )}
-                </div>
+              <div className="mt-auto">
+                <Link href="/networking-card" className="inline-flex items-center gap-2 bg-pdt-dark text-white py-2.5 px-6 rounded-lg text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
+                  Learn more &amp; generate &rarr;
+                </Link>
               </div>
             </div>
           </div>
