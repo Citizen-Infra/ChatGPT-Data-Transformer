@@ -19,8 +19,16 @@ export default function Home() {
           <p className="text-xs text-[var(--text-muted)] mt-4">
             From your ChatGPT data export · JSON file only
           </p>
-          <div className="inline-block mt-3 bg-green-badge text-pdt-dark py-2 px-5 rounded-full text-[13px] font-medium">
-            No account. No storage. Processed entirely in your browser.
+          <div className="inline-block mt-3 bg-green-badge text-pdt-dark py-2.5 px-5 rounded-full text-center">
+            <div className="text-[13px] font-medium">
+              No account. No storage. No servers. Everything runs in your browser.
+            </div>
+            <div className="text-[12px] text-pdt-dark/60 mt-1">
+              Your data never leaves your device &mdash;{" "}
+              <a href="#privacy" className="text-pdt-dark/80 underline hover:text-pdt-dark transition-colors">
+                see how it works
+              </a>
+            </div>
           </div>
         </div>
       </section>
