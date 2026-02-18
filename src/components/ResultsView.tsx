@@ -249,9 +249,12 @@ export function ResultsView() {
                 <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-pdt-dark text-white">NEW</span>
               </div>
               <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight">Your Networking Card</h3>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
+              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-2">
                 A phone-ready PNG that shows your top projects, interests, thinking style, and how you use AI — pulled directly from your ChatGPT history. Not a resume. Not a LinkedIn profile. A real snapshot of how your mind works.
               </p>
+              <Link href="/networking-card" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline inline-block mb-3">
+                Learn more about networking cards &rarr;
+              </Link>
               <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-2">
                 <strong className="text-[var(--text-primary)]">What it&apos;s for:</strong> Share it at meetups, conferences, or local events to skip the small talk and find collaborators, co-builders, and friends faster.
               </p>
@@ -282,7 +285,7 @@ export function ResultsView() {
                     Already set up your MCP? Generate your networking card locally using Claude Desktop. Your data never leaves your machine.
                   </p>
                   <Link
-                    href="/mcp-setup#setup"
+                    href="/networking-card#prompt"
                     className="inline-flex items-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white py-2 px-4 rounded-lg text-[13px] font-semibold w-full justify-center no-underline hover:bg-green-light transition-colors"
                   >
                     View local instructions &rarr;
