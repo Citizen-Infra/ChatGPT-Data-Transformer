@@ -133,18 +133,37 @@ export default function Home() {
             <p className="text-sm text-[var(--text-secondary)] mb-8 leading-relaxed">
               Everything runs in your browser. Your data never touches our servers.
             </p>
-            <div className="space-y-4">
-              <div className="flex gap-3 items-start">
-                <div className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-pdt-dark"><polyline points="20 6 9 17 4 12" /></svg>
+            <div className="space-y-6">
+              <div className="flex gap-3">
+                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🔥</div>
+                <div>
+                  <h4 className="text-sm font-bold mb-1">Processed entirely in your browser</h4>
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">No upload, no transmission. We use your device&apos;s own compute to do the transformation.</p>
                 </div>
-                <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Runs entirely in your browser &mdash; no servers, no accounts, no data leaves your device.</p>
               </div>
-              <div className="flex gap-3 items-start">
-                <div className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-pdt-dark"><polyline points="20 6 9 17 4 12" /></svg>
+              <div className="flex gap-3">
+                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🛡️</div>
+                <div>
+                  <h4 className="text-sm font-bold mb-1">We have no database</h4>
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">There is nothing to breach. Closing this tab deletes everything &mdash; nothing persists.</p>
                 </div>
-                <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Outputs download straight to your machine. <a href="#privacy" className="font-semibold text-pdt-dark no-underline hover:underline">See how privacy works &rarr;</a></p>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">📁</div>
+                <div>
+                  <h4 className="text-sm font-bold mb-1">Files live only on your device</h4>
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">The outputs you download belong to you. We can&apos;t access them after you leave.</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🔗</div>
+                <div>
+                  <h4 className="text-sm font-bold mb-1">Connect Claude to your history</h4>
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Use MCP to give Claude direct access to your past conversations &mdash; searchable and citable. Your files stay on your device; Claude reads them when you ask a question.</p>
+                  <a href="/mcp-setup" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline mt-1 inline-block">
+                    Learn more about MCP &rarr;
+                  </a>
+                </div>
               </div>
             </div>
           </div>
