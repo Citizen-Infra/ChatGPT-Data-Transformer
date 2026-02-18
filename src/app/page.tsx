@@ -44,9 +44,12 @@ export default function Home() {
             </div>
             <div className="text-3xl mb-4">✨</div>
             <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">MCP Files for Claude</h3>
-            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
               A structured zip that lets Claude search and cite your ChatGPT history in real time. Brings your past thinking into every future conversation. This is the foundation — once connected, it unlocks the other tools locally on your machine.
             </p>
+            <a href="/mcp-setup" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
+              Learn how MCP works &rarr;
+            </a>
           </div>
           {/* Card 2 — Networking Card */}
           <div className="border border-[var(--card-border)] rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -56,9 +59,12 @@ export default function Home() {
             </div>
             <div className="text-3xl mb-4">🪪</div>
             <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">Networking Card</h3>
-            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
               A phone-ready PNG showing your top projects, interests, and thinking style. We believe technology should help us relate better to ourselves, each other, and the world. Generate yours and share it at your next local event to find collaborators and friends more quickly.
             </p>
+            <a href="/networking-card" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
+              Learn more &rarr;
+            </a>
           </div>
           {/* Card 3 — Caricature (coming soon) */}
           <div className="border border-[var(--card-border)] rounded-xl p-6 opacity-75">
@@ -144,6 +150,16 @@ export default function Home() {
                 <div>
                   <h4 className="text-sm font-bold mb-1">Files live only on your device</h4>
                   <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">The outputs you download belong to you. We can&apos;t access them after you leave.</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🔗</div>
+                <div>
+                  <h4 className="text-sm font-bold mb-1">Connect Claude to your history</h4>
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Use MCP to give Claude direct access to your past conversations &mdash; searchable, citable, and running entirely on your machine.</p>
+                  <a href="/mcp-setup" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline mt-1 inline-block">
+                    Learn more about MCP &rarr;
+                  </a>
                 </div>
               </div>
             </div>
