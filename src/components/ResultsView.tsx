@@ -166,11 +166,11 @@ export function ResultsView() {
 
             {/* Right: Activity by month — individual month-year, chronological, scrollable */}
             <div>
-              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Activity by Month</div>
+              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Conversations by Month</div>
               {snapshot.activity_by_month?.length > 0 ? (
                 <div
                   role="list"
-                  aria-label="Messages per month"
+                  aria-label="Conversations per month"
                   className="flex flex-col gap-2.5 overflow-y-auto"
                   style={{ maxHeight: "360px" }}
                 >
@@ -221,7 +221,6 @@ export function ResultsView() {
               <div className="text-4xl mb-3">📁</div>
               <div className="flex gap-2 items-center mb-2 flex-wrap">
                 <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-white/15 text-white inline-flex items-center gap-1">◆ Power Users</span>
-                <span className="text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded bg-green-accent/30 text-green-light">FREE</span>
                 <span className="text-[10px] text-white/50">· REQUIRES CLAUDE DESKTOP</span>
               </div>
               <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight text-white">MCP Files for Claude</h3>

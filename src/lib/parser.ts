@@ -552,6 +552,7 @@ export function parseConversationsJson(data: unknown): { evidence: EvidenceRow[]
 
     const nodes = linearizeMapping(mapping);
     const convUserMsgs: string[] = [];
+    let convEarliestDate: string | null = null;
 
     for (let t = 0; t < nodes.length; t++) {
       const node = nodes[t];
@@ -563,8 +564,7 @@ export function parseConversationsJson(data: unknown): { evidence: EvidenceRow[]
       const date = parseTimestampToDate(createTime);
       if (date) {
         allDates.push(date);
-        const ym = date.slice(0, 7);
-        monthCounts[ym] = (monthCounts[ym] ?? 0) + 1;
+        if (!convEarliestDate || date < convEarliestDate) convEarliestDate = date;
       }
 
       const nodeId = (node as Record<string, unknown>).id as string | undefined;
@@ -605,6 +605,12 @@ export function parseConversationsJson(data: unknown): { evidence: EvidenceRow[]
         if (firstDate && (!titleMeta[key].firstDate || firstDate < titleMeta[key].firstDate!)) titleMeta[key].firstDate = firstDate;
         if (lastDate && (!titleMeta[key].lastDate || lastDate > titleMeta[key].lastDate!)) titleMeta[key].lastDate = lastDate;
       }
+    }
+
+    /* Count one conversation per month based on its earliest message date */
+    if (convEarliestDate) {
+      const ym = convEarliestDate.slice(0, 7);
+      monthCounts[ym] = (monthCounts[ym] ?? 0) + 1;
     }
   }
 
