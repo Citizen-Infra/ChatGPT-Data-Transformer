@@ -1,52 +1,91 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }) {
   const isDark = variant === "results";
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const linkClass = isDark
+    ? "text-sm font-medium text-white/80 no-underline hover:text-white transition-colors"
+    : "text-sm font-medium text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)] transition-colors";
+
+  const uploadHref = variant === "results" ? "/" : "/#upload";
+
   return (
     <nav
-      className={`sticky top-0 z-50 border-b px-6 md:px-8 h-14 flex items-center justify-between ${
+      className={`sticky top-0 z-50 border-b px-6 md:px-8 ${
         isDark ? "bg-pdt-dark border-white/10" : "bg-white border-[var(--border)]"
       }`}
     >
-      <Link href="/" className={`flex items-center gap-2.5 no-underline ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}>
-        <span className={`font-mono-pdt font-medium text-[15px] ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}>
-          chatgpt.pdt
-        </span>
-      </Link>
-      {variant === "results" ? (
-        <div className="flex items-center gap-7">
-          <Link href="/#how" className="text-sm font-medium text-white/80 no-underline hover:text-white transition-colors">
+      <div className="h-14 flex items-center justify-between">
+        {/* Logo + subtitle */}
+        <Link href="/" className={`flex flex-col no-underline leading-none ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}>
+          <span className={`font-mono-pdt font-bold text-[15px] ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}>
+            chatgpt.pdt
+          </span>
+          <span className={`font-mono-pdt text-[10px] tracking-wide ${isDark ? "text-white/50" : "text-[var(--text-muted)]"} hidden min-[480px]:block`}>
+            personal data transformer
+          </span>
+        </Link>
+
+        {/* Desktop nav links */}
+        <div className="hidden md:flex items-center gap-7">
+          <Link href="/#how" className={linkClass}>
             How it works
           </Link>
-          <Link href="/#privacy" className="text-sm font-medium text-white/80 no-underline hover:text-white transition-colors">
+          <Link href="/#privacy" className={linkClass}>
             Privacy
           </Link>
           <Link
-            href="/"
-            className="text-sm font-semibold text-white bg-pdt-dark border border-white/30 px-5 py-2.5 rounded-lg no-underline hover:bg-green-mid transition-colors"
+            href={uploadHref}
+            className={`text-sm font-semibold px-5 py-2.5 rounded-lg no-underline transition-colors ${
+              isDark
+                ? "text-white bg-pdt-dark border border-white/30 hover:bg-green-mid"
+                : "text-white bg-pdt-dark hover:bg-green-mid"
+            }`}
           >
             Upload your data →
           </Link>
         </div>
-      ) : (
-        <ul className="flex items-center gap-7 list-none m-0 p-0">
-          <li>
-            <Link href="/#how" className="text-sm font-medium text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)] transition-colors">
-              How it works
-            </Link>
-          </li>
-          <li>
-            <Link href="/#privacy" className="text-sm font-medium text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)] transition-colors">
-              Privacy
-            </Link>
-          </li>
-          <li>
-            <Link href="/#upload" className="text-sm font-semibold text-white bg-pdt-dark px-5 py-2.5 rounded-[8px] no-underline hover:bg-green-mid transition-colors">
-              Upload your data →
-            </Link>
-          </li>
-        </ul>
-      )}
+
+        {/* Mobile hamburger button */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className={`md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] ${isDark ? "text-white" : "text-[var(--text-primary)]"}`}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+        >
+          <span className={`block w-5 h-[2px] rounded transition-all duration-200 ${isDark ? "bg-white" : "bg-[var(--text-primary)]"} ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
+          <span className={`block w-5 h-[2px] rounded transition-all duration-200 ${isDark ? "bg-white" : "bg-[var(--text-primary)]"} ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-[2px] rounded transition-all duration-200 ${isDark ? "bg-white" : "bg-[var(--text-primary)]"} ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
+        </button>
+      </div>
+
+      {/* Mobile slide-down menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-200 ease-in-out ${
+          menuOpen ? "max-h-60 pb-5" : "max-h-0"
+        }`}
+      >
+        <div className="flex flex-col gap-4 pt-2">
+          <Link href="/#how" onClick={() => setMenuOpen(false)} className={linkClass}>
+            How it works
+          </Link>
+          <Link href="/#privacy" onClick={() => setMenuOpen(false)} className={linkClass}>
+            Privacy
+          </Link>
+          <Link
+            href={uploadHref}
+            onClick={() => setMenuOpen(false)}
+            className="text-sm font-semibold text-white bg-pdt-dark px-5 py-3 rounded-lg no-underline hover:bg-green-mid transition-colors text-center"
+          >
+            Upload your data →
+          </Link>
+        </div>
+      </div>
     </nav>
   );
 }
