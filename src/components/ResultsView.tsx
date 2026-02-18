@@ -93,10 +93,10 @@ export function ResultsView() {
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap">
           <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/90 transition-colors">
-            Populate your schema &rarr;
+            Set up your MCP &rarr;
           </Link>
           <a href="#files-explained" className="inline-flex items-center gap-2 border border-white/30 text-white rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/10 transition-colors">
-            What downloaded?
+            Peek inside
           </a>
         </div>
       </section>
