@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* PDT design exploration — landingpageupdates / resultspageupdates */
+  --green-dark: #1a3a2a;
+  --green-mid: #2d5a3f;
+  --green-accent: #3d7a56;
+  --green-light: #e8f0eb;
+  --green-badge: #d4e8db;
+  --cream: #f7f5f0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --border: #e0e0e0;
+  --card-border: #d8d8d8;
+  /* Legacy / compatibility */
+  --pdt-dark: #1a3a2a;
+  --ink: #1a1a1a;
+  --body: #555555;
+  --subtle: #888888;
+  --rule: #e0e0e0;
+  --surface: #ffffff;
+  --bg: #ffffff;
+  --card-bg: #e8f0eb;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif-pdt {
+  font-family: 'DM Serif Display', serif;
+}
+
+.font-mono-pdt {
+  font-family: 'JetBrains Mono', monospace;
+}
