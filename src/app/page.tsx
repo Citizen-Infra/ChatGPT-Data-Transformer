@@ -58,7 +58,6 @@ export default function Home() {
           {/* Card 2 — Networking Card */}
           <div className="border border-[var(--card-border)] rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all">
             <div className="flex gap-2 mb-4">
-              <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-green-light text-pdt-dark">FREE</span>
               <span className="text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded bg-pdt-dark text-white">START HERE</span>
             </div>
             <div className="text-3xl mb-4">🪪</div>
