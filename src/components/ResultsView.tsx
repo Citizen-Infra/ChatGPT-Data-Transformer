@@ -94,9 +94,9 @@ export function ResultsView() {
           <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/90 transition-colors">
             Set up your MCP &rarr;
           </Link>
-          <a href="#files-explained" className="inline-flex items-center gap-2 border border-white/30 text-white rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/10 transition-colors">
-            Peek inside
-          </a>
+          <Link href="/schema" className="inline-flex items-center gap-2 border border-white/30 text-white rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/10 transition-colors">
+            What did I just download?
+          </Link>
         </div>
       </section>
 
@@ -249,16 +249,25 @@ export function ResultsView() {
                 Point your schema at Claude through MCP. It stays on your device &mdash; Claude reads it directly.
               </p>
               <p className="text-[13px] leading-relaxed mb-7" style={{ color: "rgba(255,255,255,0.5)" }}>~5 minute setup</p>
-              <Link
-                href="/mcp-setup"
-                className="inline-flex items-center gap-2 w-fit rounded-full text-[14px] font-semibold no-underline transition-all hover:-translate-y-px"
-                style={{ padding: "12px 24px", background: "#FFFFFF", color: "#1A2E23" }}
-              >
-                Set up MCP
-                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
-                </svg>
-              </Link>
+              <div className="flex items-center gap-3 flex-wrap">
+                <Link
+                  href="/mcp-setup"
+                  className="inline-flex items-center gap-2 w-fit rounded-full text-[14px] font-semibold no-underline transition-all hover:-translate-y-px"
+                  style={{ padding: "12px 24px", background: "#FFFFFF", color: "#1A2E23" }}
+                >
+                  Set up your MCP
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                  </svg>
+                </Link>
+                <Link
+                  href="/schema"
+                  className="inline-flex items-center gap-2 w-fit rounded-full text-[14px] font-semibold no-underline transition-all hover:-translate-y-px"
+                  style={{ padding: "12px 24px", background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.2)" }}
+                >
+                  About the schema
+                </Link>
+              </div>
             </div>
 
             {/* Networking Card — light */}
