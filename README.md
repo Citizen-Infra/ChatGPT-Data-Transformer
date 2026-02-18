@@ -1,28 +1,24 @@
-# ChatGPT PDT Website
+**# Portable Intellectual History Transformer**
 
-Privacy-first web app for the **Personal Data Transformer (PDT)**. Upload your ChatGPT `conversations.json`; everything runs in your browser. No account, no server storage.
+Your AI conversation history belongs to you. This tool converts your ChatGPT data export into a local MCP (Model Context Protocol) server, giving Claude direct access to search and reference your full conversation history — no cloud, no third-party storage, no data leaving your machine.
 
-## Run locally
+**## What it does**
 
-```bash
-npm install
-npm run dev
-```
+You export your data from ChatGPT, run it through the transformer, and get a fully functional MCP server that connects to Claude Desktop. Claude gains tools like `search_evidence`, `get_conversation`, and `get_evidence_by_id` — meaning it can pull context from thousands of past conversations as naturally as searching the web.
 
-Open [http://localhost:3000](http://localhost:3000). Upload a `conversations.json` from your ChatGPT export to see your snapshot and download your networking card (PNG).
+Your intellectual history becomes portable infrastructure instead of platform lock-in.
 
-## What it does
+**## Why**
 
-1. **Landing** — Hero, how-to (export from ChatGPT), drag-and-drop upload, trust copy.
-2. **Parse** — Client-side only: reads `conversations.json`, linearizes messages, builds a snapshot (conversation count, date range, usage categories, top conversation titles as “projects”, simple interest tags).
-3. **Results** — Snapshot summary + networking card (portrait 390×844). Optional display name, then “Download My Networking Card” as PNG (2x for retina).
-4. **Bloom CTA** — Link to find a Bloom chapter. MCP zip + setup tutorial can be added later.
+Every conversation you've had with ChatGPT — the context you've built, the projects you've explored, the thinking you've developed — lives on their servers. If you switch to Claude or any other platform, you start from zero. This tool closes that gap. Your history follows you.
 
-## Stack
+**## How it works**
 
-- Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS
-- `html2canvas` for card PNG export
-- No backend; no analytics on file contents
+1. Download your ChatGPT data export (Settings → Export Data → download the JSON)
+2. Run the transformer to convert and index your conversations
+3. Connect the generated MCP server to Claude Desktop
+4. Claude can now search and reference your full conversation history
 
-this app is the standalone web UI.
+Data stays local. Nothing is uploaded. The interface is Claude itself — no new UI to learn.
 
+---
