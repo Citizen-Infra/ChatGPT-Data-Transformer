@@ -89,7 +89,7 @@ export function ResultsView() {
           The architecture of your thinking.
         </h1>
         <p className="text-white/70 text-[15px] max-w-[600px] mx-auto leading-relaxed mb-8">
-          That zip file is a portable schema &mdash; the scaffolding that turns raw chat logs into something an AI can actually understand. Connect it to Claude to populate it and start working with your history, not just storing it.
+          That zip file is a portable schema &mdash; the scaffolding that turns raw chat logs into something an AI can actually work with. Connect it to Claude to populate it and start working with your history, not just storing it.
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap">
           <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/90 transition-colors">
