@@ -2,14 +2,10 @@ export function SubNav() {
   return (
     <div
       style={{
-        width: "100vw",
-        position: "relative",
-        left: "50%",
-        marginLeft: "-50vw",
+        width: "100%",
         backgroundColor: "#1a3a2a",
-        maxWidth: "none",
-        boxSizing: "border-box" as const,
-        padding: "10px 0",
+        padding: "12px 0",
+        margin: 0,
       }}
     >
       <div
@@ -20,22 +16,39 @@ export function SubNav() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "16px",
-          flexWrap: "wrap",
+          gap: "20px",
+          flexWrap: "wrap" as const,
         }}
       >
-        <p className="text-white/80 text-xs leading-relaxed text-center md:text-left m-0" style={{ margin: 0 }}>
+        <p
+          style={{
+            color: "rgba(255,255,255,0.8)",
+            fontSize: "0.8rem",
+            margin: 0,
+            lineHeight: 1.4,
+          }}
+        >
           Help build citizen-owned data infrastructure by supporting the{" "}
           <a
-            href="#cibc"
-            className="font-semibold no-underline hover:underline hover:text-white transition-colors"
-            style={{ color: "#a8d5a2" }}
+            href="/#cibc"
+            style={{
+              color: "#a8d5a2",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
           >
             Citizen Infrastructure Builders Club (CIBC)
           </a>
         </p>
-        <div className="flex items-center justify-center gap-2 flex-shrink-0 flex-wrap min-[400px]:flex-nowrap">
-          {/* Primary — solid white bg, dark green text, no border color showing */}
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            flexShrink: 0,
+            flexWrap: "wrap" as const,
+          }}
+        >
+          {/* PRIMARY: white filled button */}
           <a
             href="https://github.com/Citizen-Infra"
             target="_blank"
@@ -44,34 +57,32 @@ export function SubNav() {
               backgroundColor: "#ffffff",
               color: "#1a3a2a",
               border: "1px solid #ffffff",
-              fontWeight: 600,
               padding: "8px 20px",
               borderRadius: "6px",
-              fontSize: "11px",
+              fontSize: "0.8rem",
+              fontWeight: 600,
               textDecoration: "none",
               whiteSpace: "nowrap",
               cursor: "pointer",
             }}
-            className="hover:!bg-[#f0f0f0] transition-colors"
           >
             Build with us &rarr;
           </a>
-          {/* Secondary — transparent bg, white text, white border */}
+          {/* SECONDARY: outline ghost button */}
           <a
             href="#coffee"
             style={{
               backgroundColor: "transparent",
               color: "#ffffff",
               border: "1px solid rgba(255,255,255,0.5)",
-              fontWeight: 400,
               padding: "8px 20px",
               borderRadius: "6px",
-              fontSize: "11px",
+              fontSize: "0.8rem",
+              fontWeight: 400,
               textDecoration: "none",
               whiteSpace: "nowrap",
               cursor: "pointer",
             }}
-            className="hover:!bg-white/10 hover:!border-white transition-colors"
           >
             Buy us a coffee &rarr;
           </a>
