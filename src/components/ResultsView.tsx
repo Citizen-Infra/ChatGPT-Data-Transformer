@@ -226,10 +226,10 @@ export function ResultsView() {
               </div>
               <h3 className="font-serif-pdt text-[22px] font-normal mb-2.5 leading-tight text-white">MCP Files for Claude</h3>
               <p className="text-[13px] text-white/70 leading-relaxed mb-3">
-                Your files are ready. Connect them to Claude Desktop and get instant access to your full ChatGPT history &mdash; searchable, citable, and running entirely on your machine.
+                Your files are ready. Connect them to Claude Desktop and get instant access to your full ChatGPT history &mdash; searchable and citable.
               </p>
               <p className="text-[13px] text-white/60 mb-6">
-                This is the foundation. Once connected, you can generate networking cards, explore your thinking patterns, and build on years of past conversations &mdash; all locally, with no data leaving your device.
+                This is the foundation. Once connected, you can generate networking cards, explore your thinking patterns, and build on years of past conversations. Your files stay on your device &mdash; when you ask Claude a question, Claude processes them directly. We never see your data; you&apos;re working with Claude, not with us.
               </p>
               <div className="mt-auto">
                 <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark py-2.5 px-6 rounded-lg text-sm font-semibold no-underline hover:bg-gray-100 transition-colors">
@@ -252,7 +252,7 @@ export function ResultsView() {
                 We believe technology should help us relate better to ourselves, each other, and the world. Your card is a small step in that direction.
               </p>
               <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-6">
-                You choose how it&apos;s made: generate it here using our API, or create it yourself locally through your MCP. Your data, your call.
+                You choose how it&apos;s made: generate it here using our API, or use your MCP to have Claude build it from your local files. Either way, PDT never sees your conversations &mdash; you&apos;re working directly with Claude.
               </p>
               <div className="mt-auto">
                 <Link href="/networking-card" className="inline-flex items-center gap-2 bg-pdt-dark text-white py-2.5 px-6 rounded-lg text-sm font-semibold no-underline hover:bg-green-mid transition-colors">

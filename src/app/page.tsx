@@ -49,7 +49,7 @@ export default function Home() {
             <div className="text-3xl mb-4">✨</div>
             <h3 className="text-[17px] font-bold text-[var(--text-primary)] mb-2">MCP Files for Claude</h3>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
-              A structured zip that lets Claude search and cite your ChatGPT history in real time. Brings your past thinking into every future conversation. This is the foundation — once connected, it unlocks the other tools locally on your machine.
+              A structured zip that lets Claude search and cite your ChatGPT history in real time. Brings your past thinking into every future conversation. Your files stay on your device, structured using our transformer schema &mdash; Claude reads them when you ask a question.
             </p>
             <a href="/mcp-setup" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
               Learn how MCP works &rarr;
@@ -159,7 +159,7 @@ export default function Home() {
                 <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🔗</div>
                 <div>
                   <h4 className="text-sm font-bold mb-1">Connect Claude to your history</h4>
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Use MCP to give Claude direct access to your past conversations &mdash; searchable, citable, and running entirely on your machine.</p>
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Use MCP to give Claude direct access to your past conversations &mdash; searchable and citable. Your files stay on your device; Claude reads them when you ask a question.</p>
                   <a href="/mcp-setup" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline mt-1 inline-block">
                     Learn more about MCP &rarr;
                   </a>
@@ -204,7 +204,7 @@ export default function Home() {
               {[
                 { title: "Client-side JavaScript only", desc: "Your file is processed entirely in your browser using your device\u2019s compute. Nothing is uploaded anywhere." },
                 { title: "No database, nothing to breach", desc: "We don\u2019t store anything. There\u2019s no account system. Closing this tab destroys all processed data permanently." },
-                { title: "AI features are opt-in only", desc: "Some features \u2014 like generating your networking card \u2014 can use Claude\u2019s API to process limited, non-conversational parts of your data (your lenses and project types, never raw conversations). You always choose when to share, and you can generate these artifacts yourself using your local MCP instead." },
+                { title: "AI features are opt-in only", desc: "PDT transforms your data entirely in your browser \u2014 we never see it. If you choose to connect your files to Claude through MCP, Claude processes your queries using Anthropic\u2019s standard privacy practices. You can also use our API to generate artifacts like networking cards \u2014 only your lenses and project types are shared, never raw conversations." },
                 { title: "Privacy-preserving analytics only", desc: "We use Plausible (not Google Analytics) for simple page-view counts. No behavioral tracking, no fingerprinting." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-3">

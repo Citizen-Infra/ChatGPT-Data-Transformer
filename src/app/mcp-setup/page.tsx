@@ -148,7 +148,7 @@ export default function McpSetupPage() {
             Your past thinking shouldn&apos;t disappear when you switch tools.
           </h1>
           <p className="text-[16px] text-[var(--text-secondary)] leading-relaxed max-w-[600px] mx-auto mb-8">
-            When you connect your ChatGPT history to Claude through MCP, every conversation you&apos;ve ever had becomes searchable, citable context. Claude doesn&apos;t just know what you asked &mdash; it knows how you think.
+            When you connect your ChatGPT history to Claude through MCP, every conversation you&apos;ve ever had becomes searchable, citable context. Your files are stored on your device and structured using our transformer schema &mdash; Claude reads them directly when you ask a question.
           </p>
           <a
             href="#setup"
@@ -205,12 +205,51 @@ export default function McpSetupPage() {
                 "Claude can search years of your thinking in real time",
                 "Reference specific past conversations by topic or date",
                 "Build on ideas you explored months ago",
-                "Your context travels with you \u2014 not trapped in one product",
+                "Your context travels with you. Stored on your device, read by Claude when you need it \u2014 not trapped in one product",
               ].map((item) => (
                 <li key={item} className="flex gap-3 text-[14px] text-[var(--text-primary)] leading-relaxed">
                   <span className="text-green-accent flex-shrink-0 mt-0.5">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><polyline points="20 6 9 17 4 12" /></svg>
                   </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          2b. HOW MCP ACTUALLY WORKS — Explainer
+          ═══════════════════════════════════════ */}
+      <section className="max-w-[960px] mx-auto px-6 md:px-8 pb-16">
+        <div className="border-l-4 border-green-accent bg-green-light/40 rounded-r-lg px-6 py-6">
+          <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-4">How MCP actually works</h3>
+          <ol className="space-y-3 mb-5">
+            {[
+              "Your ChatGPT export is transformed into structured files by PDT \u2014 entirely in your browser",
+              "Those files are saved to your device",
+              "Claude Desktop connects to those files through MCP using our transformer schema",
+              "When you ask Claude a question, Claude reads your local files to find relevant context",
+              "Claude processes your query on Anthropic\u2019s servers and returns a response",
+            ].map((step, i) => (
+              <li key={i} className="flex gap-3 text-[14px] text-[var(--text-secondary)] leading-relaxed">
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-accent/20 text-pdt-dark text-[11px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+          <div className="border-t border-green-accent/20 pt-4">
+            <p className="text-[13px] font-semibold text-[var(--text-primary)] mb-2">What this means for your privacy:</p>
+            <ul className="space-y-1.5">
+              {[
+                "PDT never sees, stores, or transmits your data \u2014 transformation happens in your browser",
+                "Your structured files live on your device \u2014 you control them",
+                "When you use Claude, Anthropic\u2019s standard privacy policies apply to how Claude handles your queries",
+                "This is no different from pasting text into Claude \u2014 MCP just makes it searchable",
+              ].map((item, i) => (
+                <li key={i} className="flex gap-2 text-[13px] text-[var(--text-secondary)] leading-relaxed">
+                  <span className="text-green-accent flex-shrink-0 mt-0.5">&bull;</span>
                   {item}
                 </li>
               ))}
@@ -558,7 +597,7 @@ export default function McpSetupPage() {
           Ready to bring your history with you?
         </h2>
         <p className="text-[15px] text-[var(--text-secondary)] max-w-[480px] mx-auto leading-relaxed mb-8">
-          Upload your ChatGPT export and get your MCP files in minutes. Everything runs in your browser.
+          Upload your ChatGPT export and get your MCP files in minutes. PDT transforms your data entirely in your browser &mdash; we never see it.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
