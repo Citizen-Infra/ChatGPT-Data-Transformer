@@ -264,57 +264,63 @@ export function ResultsView() {
 
 
         {/* ═══════════════════════════════════════════════════════════
-            WHAT'S NEXT — Action-oriented CTA
+            WHAT'S NEXT — Card-style action steps
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 border-t border-[var(--border)]">
           <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-2">What&apos;s Next</div>
-          <h2 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] mb-3 leading-tight">
-            Your data is ready. Now make it useful.
+          <h2 className="font-serif-pdt text-[1.85rem] font-extrabold text-[var(--text-primary)] mb-1.5 leading-tight tracking-tight">
+            Your data is ready.<br />Now make it useful.
           </h2>
-          <p className="text-[15px] text-[var(--text-secondary)] mb-8">
+          <p className="text-[0.92rem] text-[var(--text-secondary)] mb-7">
             You&apos;ve got the files. Here&apos;s how to put them to work:
           </p>
 
-          {/* Three action items — compact checklist rows */}
-          <div className="space-y-5 mb-12">
-            <div className="flex gap-3.5 items-start">
-              <span className="text-lg flex-shrink-0 mt-0.5">⚡</span>
-              <div>
-                <span className="text-[14px] font-semibold text-[var(--text-primary)]">Connect your MCP</span>
-                <span className="text-[14px] text-[var(--text-secondary)]"> &mdash; Give Claude access to your full history. Search, cite, and build on years of past thinking. </span>
-                <Link href="/mcp-setup" className="text-[14px] font-semibold text-pdt-dark no-underline hover:underline">Set up MCP &rarr;</Link>
+          <div className="flex flex-col gap-2.5">
+            {/* Step 1 — Connect MCP */}
+            <div className="flex items-start gap-4 bg-white border border-[var(--border)] rounded-[14px] px-5 py-[18px] hover:border-[#d5d0ca] hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.03)] hover:-translate-y-px transition-all">
+              <div className="w-[38px] h-[38px] rounded-[10px] bg-[#fef3ee] flex items-center justify-center flex-shrink-0">
+                <svg className="w-[18px] h-[18px] text-[#e8652d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-[0.92rem] text-[var(--text-primary)] mb-0.5">Connect your MCP</div>
+                <p className="text-[0.84rem] leading-relaxed text-[var(--text-secondary)]">Give Claude access to your full history. Search, cite, and build on years of past thinking.</p>
+                <Link href="/mcp-setup" className="inline-flex items-center gap-1 mt-2 py-[5px] px-3.5 rounded-full text-[0.78rem] font-semibold no-underline bg-[#fef3ee] text-[#e8652d] hover:bg-[#fde8dd] transition-colors">
+                  Set up MCP
+                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </Link>
               </div>
             </div>
-            <div className="flex gap-3.5 items-start">
-              <span className="text-lg flex-shrink-0 mt-0.5">🪪</span>
-              <div>
-                <span className="text-[14px] font-semibold text-[var(--text-primary)]">Generate your networking card</span>
-                <span className="text-[14px] text-[var(--text-secondary)]"> &mdash; Create a shareable snapshot of your projects and interests. Bring it to your next event. </span>
-                <Link href="/networking-card" className="text-[14px] font-semibold text-pdt-dark no-underline hover:underline">Make your card &rarr;</Link>
-              </div>
-            </div>
-            <div className="flex gap-3.5 items-start">
-              <span className="text-lg flex-shrink-0 mt-0.5">🔧</span>
-              <div>
-                <span className="text-[14px] font-semibold text-[var(--text-primary)]">Keep building</span>
-                <span className="text-[14px] text-[var(--text-secondary)]"> &mdash; Your MCP is an open foundation. Use it to build custom tools, automate workflows, or create artifacts we haven&apos;t thought of yet.</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Build with us — warm secondary callout */}
-          <div className="border-l-4 border-green-accent bg-green-light/40 rounded-r-lg px-6 py-5 mb-4">
-            <p className="text-[14px] font-semibold text-[var(--text-primary)] mb-2">Want to build citizen infrastructure?</p>
-            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
-              PDT is one tool in a larger ecosystem of projects built to strengthen community agency and data sovereignty. We&apos;re a community of builders, designers, researchers, and citizens &mdash; and we&apos;re always looking for collaborators.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
-                Get in touch &rarr;
-              </a>
-              <Link href="/#cibc" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
-                Learn about CIBC &rarr;
-              </Link>
+            {/* Step 2 — Networking card */}
+            <div className="flex items-start gap-4 bg-white border border-[var(--border)] rounded-[14px] px-5 py-[18px] hover:border-[#d5d0ca] hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.03)] hover:-translate-y-px transition-all">
+              <div className="w-[38px] h-[38px] rounded-[10px] bg-[#eef6f1] flex items-center justify-center flex-shrink-0">
+                <svg className="w-[18px] h-[18px] text-[#2d6a4f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-[0.92rem] text-[var(--text-primary)] mb-0.5">Generate your networking card</div>
+                <p className="text-[0.84rem] leading-relaxed text-[var(--text-secondary)]">Create a shareable snapshot of your projects and interests. Bring it to your next event.</p>
+                <Link href="/networking-card" className="inline-flex items-center gap-1 mt-2 py-[5px] px-3.5 rounded-full text-[0.78rem] font-semibold no-underline bg-[#eef6f1] text-[#2d6a4f] hover:bg-[#ddeee4] transition-colors">
+                  Make your card
+                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </Link>
+              </div>
+            </div>
+
+            {/* Step 3 — Keep building */}
+            <div className="flex items-start gap-4 bg-white border border-[var(--border)] rounded-[14px] px-5 py-[18px] hover:border-[#d5d0ca] hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.03)] hover:-translate-y-px transition-all">
+              <div className="w-[38px] h-[38px] rounded-[10px] bg-[#f1effe] flex items-center justify-center flex-shrink-0">
+                <svg className="w-[18px] h-[18px] text-[#6b5ce7]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-[0.92rem] text-[var(--text-primary)] mb-0.5">Keep building</div>
+                <p className="text-[0.84rem] leading-relaxed text-[var(--text-secondary)]">Your MCP is an open foundation. Use it to build custom tools, automate workflows, or create artifacts we haven&apos;t thought of yet.</p>
+              </div>
             </div>
           </div>
         </div>
