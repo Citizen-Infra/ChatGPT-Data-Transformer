@@ -10,10 +10,10 @@ function PdtLogo({ isDark }: { isDark: boolean }) {
 
   return (
     <div className="flex flex-col leading-none" aria-label="chatgpt.pdt — personal data transformer">
-      <span className={`font-bold text-[17px] tracking-tight ${textColor}`}>
+      <span className={`font-extrabold text-[22px] tracking-tight ${textColor}`} style={{ lineHeight: 1.2 }}>
         chatgpt<span style={{ color: dotColor }}>.</span>pdt
       </span>
-      <span className={`text-[10px] font-normal tracking-wide ${subtitleColor}`}>
+      <span className={`text-[12px] font-normal tracking-wide ${subtitleColor}`} style={{ lineHeight: 1.2 }}>
         personal data transformer
       </span>
     </div>
@@ -36,7 +36,7 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
         isDark ? "bg-pdt-dark border-white/10" : "bg-white border-[var(--border)]"
       }`}
     >
-      <div className="h-14 flex items-center justify-between">
+      <div className="h-16 flex items-center justify-between">
         {/* Logo — clickable SVG */}
         <Link href="/" className="no-underline flex-shrink-0">
           <PdtLogo isDark={isDark} />
