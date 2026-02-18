@@ -16,20 +16,6 @@ function formatShortDate(iso: string): string {
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
-const CIBC_PRINCIPLES = [
-  "Pedagogical by design",
-  "Ownership-enabling",
-  "Solidarity-building",
-  "Sovereignty-preserving",
-  "Interoperable",
-  "Antifragile",
-];
-
-const CIBC_PROJECTS = [
-  { name: "my-community", desc: "Community dashboard Chrome extension — Bluesky feed, curated digest, participation opportunities" },
-  { name: "dear-neighbors", desc: "Neighborhood dashboard Chrome extension — community-curated local news + participation opportunities" },
-  { name: "nsrt", desc: "Novi Sad Relational Tech — neighborhood tools for Novi Sad residents" },
-];
 
 
 export function ResultsView() {
@@ -230,76 +216,59 @@ export function ResultsView() {
 
 
         {/* ═══════════════════════════════════════════════════════════
-            CIBC — Citizen Infrastructure Builders Club
+            WHAT'S NEXT — Action-oriented CTA
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 border-t border-[var(--border)]">
-          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-3">Who We Are</div>
-          <h2 className="font-serif-pdt text-3xl md:text-[2.25rem] font-normal text-[var(--text-primary)] leading-tight mb-8">
-            Citizen Infrastructure Builders
+          <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-2">What&apos;s Next</div>
+          <h2 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] mb-3 leading-tight">
+            Your data is ready. Now make it useful.
           </h2>
-
-          {/* Buckminster Fuller quote */}
-          <blockquote className="border-l-4 border-green-accent pl-6 py-2 mb-10">
-            <p className="font-serif-pdt text-lg md:text-xl italic text-[var(--text-primary)] leading-relaxed mb-2">
-              &ldquo;If you want to teach people a new way of thinking, don&apos;t bother trying to teach them. Instead, give them a tool, the use of which will lead to new ways of thinking.&rdquo;
-            </p>
-            <cite className="text-[13px] text-[var(--text-muted)] not-italic">— Buckminster Fuller</cite>
-          </blockquote>
-
-          {/* Body copy */}
-          <div className="max-w-[680px] space-y-4 mb-10">
-            <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
-              We build digital pitchforks — citizen infrastructure that teaches collective action, solidarity, and shared stewardship through use. Not apps or platforms in the traditional sense, but tools crafted to reshape how people relate to each other and to their communities.
-            </p>
-            <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
-              In an age of techno-feudalism, where digital platforms have replaced markets with fiefdoms and users have become digital serfs, the antidote is not better regulation of feudal tools — it&apos;s building tools that nurture citizen empowerment and the people&apos;s capacity to act together.
-            </p>
-          </div>
-
-          {/* Principles — badges/tags */}
-          <div className="mb-10">
-            <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Principles</div>
-            <div className="flex flex-wrap gap-2">
-              {CIBC_PRINCIPLES.map((p) => (
-                <span key={p} className="text-[12px] font-medium py-1.5 px-3.5 rounded-full bg-green-light text-pdt-dark border border-green-badge">
-                  {p}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Projects — compact table */}
-          <div className="mb-10">
-            <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-3">Projects</div>
-            <div className="border border-[var(--border)] rounded-xl overflow-hidden">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-green-light/50">
-                    <th className="text-left py-3 px-4 text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)]">Project</th>
-                    <th className="text-left py-3 px-4 text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)]">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[var(--border)]">
-                  {CIBC_PROJECTS.map((proj) => (
-                    <tr key={proj.name}>
-                      <td className="py-3 px-4 font-mono-pdt text-[13px] font-medium text-pdt-dark whitespace-nowrap align-top">{proj.name}</td>
-                      <td className="py-3 px-4 text-[13px] text-[var(--text-secondary)] leading-relaxed">{proj.desc}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Ecosystem mention */}
-          <p className="text-[13px] text-[var(--text-muted)] mb-8">
-            Part of a larger ecosystem connecting with Metagov, Newspeak House, Civic Tech Field Guide, Life Itself, and the Relational Tech Project.
+          <p className="text-[15px] text-[var(--text-secondary)] mb-8">
+            You&apos;ve got the files. Here&apos;s how to put them to work:
           </p>
 
-          {/* CTA */}
-          <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-pdt-dark text-white border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-green-mid transition-colors">
-            Join us on GitHub →
-          </a>
+          {/* Three action items — compact checklist rows */}
+          <div className="space-y-5 mb-12">
+            <div className="flex gap-3.5 items-start">
+              <span className="text-lg flex-shrink-0 mt-0.5">⚡</span>
+              <div>
+                <span className="text-[14px] font-semibold text-[var(--text-primary)]">Connect your MCP</span>
+                <span className="text-[14px] text-[var(--text-secondary)]"> &mdash; Give Claude access to your full history. Search, cite, and build on years of past thinking. </span>
+                <Link href="/mcp-setup" className="text-[14px] font-semibold text-pdt-dark no-underline hover:underline">Set up MCP &rarr;</Link>
+              </div>
+            </div>
+            <div className="flex gap-3.5 items-start">
+              <span className="text-lg flex-shrink-0 mt-0.5">🪪</span>
+              <div>
+                <span className="text-[14px] font-semibold text-[var(--text-primary)]">Generate your networking card</span>
+                <span className="text-[14px] text-[var(--text-secondary)]"> &mdash; Create a shareable snapshot of your projects and interests. Bring it to your next event. </span>
+                <Link href="/networking-card" className="text-[14px] font-semibold text-pdt-dark no-underline hover:underline">Make your card &rarr;</Link>
+              </div>
+            </div>
+            <div className="flex gap-3.5 items-start">
+              <span className="text-lg flex-shrink-0 mt-0.5">🔧</span>
+              <div>
+                <span className="text-[14px] font-semibold text-[var(--text-primary)]">Keep building</span>
+                <span className="text-[14px] text-[var(--text-secondary)]"> &mdash; Your MCP is an open foundation. Use it to build custom tools, automate workflows, or create artifacts we haven&apos;t thought of yet.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Build with us — warm secondary callout */}
+          <div className="border-l-4 border-green-accent bg-green-light/40 rounded-r-lg px-6 py-5 mb-4">
+            <p className="text-[14px] font-semibold text-[var(--text-primary)] mb-2">Want to build citizen infrastructure?</p>
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
+              PDT is one tool in a larger ecosystem of projects built to strengthen community agency and data sovereignty. We&apos;re a community of builders, designers, researchers, and citizens &mdash; and we&apos;re always looking for collaborators.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://github.com/Citizen-Infra" target="_blank" rel="noopener noreferrer" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
+                Get in touch &rarr;
+              </a>
+              <Link href="/#cibc" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline">
+                Learn about CIBC &rarr;
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
