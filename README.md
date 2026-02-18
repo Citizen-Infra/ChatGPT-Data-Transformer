@@ -24,6 +24,5 @@ Open [http://localhost:3000](http://localhost:3000). Upload a `conversations.jso
 - `html2canvas` for card PNG export
 - No backend; no analytics on file contents
 
-## Folder
+this app is the standalone web UI.
 
-All work is in **`C:\Users\Megan\Documents\Bloom\chatGPT_pdt_website`**. The transformer logic and MCP schema live in your other repo (Portable-ChatGPT-Data-Transformer); this app is the standalone web UI.
