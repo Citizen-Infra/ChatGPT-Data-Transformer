@@ -254,7 +254,7 @@ export default function NetworkingCardPage() {
               Generate it yourself with Claude
             </h3>
             <p className="text-[14px] text-[var(--text-secondary)] leading-relaxed mb-6">
-              Already have your MCP set up? You can generate your networking card as a Claude artifact &mdash; a living, linkable overview of your thinking that you control completely.
+              Already have your MCP set up? Use Claude Desktop to generate your networking card from your local files. Your files stay on your device &mdash; Claude reads them to build your card. PDT is never involved.
             </p>
             <a
               href="#prompt"
@@ -368,7 +368,7 @@ export default function NetworkingCardPage() {
           Ready to make yours?
         </h2>
         <p className="text-[15px] text-[var(--text-secondary)] max-w-[480px] mx-auto leading-relaxed mb-8">
-          Upload your ChatGPT export and generate your networking card in minutes. Or set up your MCP and generate it locally with Claude.
+          Upload your ChatGPT export and generate your networking card in minutes. Or set up your MCP and have Claude build it from your local files.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
