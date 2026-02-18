@@ -233,9 +233,9 @@ export function ResultsView() {
               </p>
               <p className="text-[13px] text-white/60 mb-2">The zip contains the schema, evidence excerpts, and metadata. Claude does the deep synthesis when you connect it. Setup takes about 15 minutes.</p>
               <p className="text-[13px] text-white/60 mb-4">Once connected, you can generate your networking card and other artifacts locally — no API needed.</p>
-              <a href="https://docs.anthropic.com/en/docs/build-with-claude/mcp" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-2 border-white/30 text-white bg-white/10 py-2.5 px-5 rounded-lg text-sm font-semibold w-fit no-underline hover:bg-white/20 transition-colors mb-4">
+              <Link href="/mcp-setup" className="inline-flex items-center gap-2 border-2 border-white/30 text-white bg-white/10 py-2.5 px-5 rounded-lg text-sm font-semibold w-fit no-underline hover:bg-white/20 transition-colors mb-4">
                 View setup guide
-              </a>
+              </Link>
               <p id="files-explained" className="text-[11px] text-white/40 leading-snug">
                 Includes: <code className="font-mono-pdt text-white/50">index.json</code> · <code className="font-mono-pdt text-white/50">overview.md</code> · <code className="font-mono-pdt text-white/50">usage_modes.json</code> · <code className="font-mono-pdt text-white/50">projects.json</code> · <code className="font-mono-pdt text-white/50">concepts.json</code> · <code className="font-mono-pdt text-white/50">evidence.json</code>
               </p>
@@ -281,14 +281,12 @@ export function ResultsView() {
                   <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed mb-3">
                     Already set up your MCP? Generate your networking card locally using Claude Desktop. Your data never leaves your machine.
                   </p>
-                  <a
-                    href="https://docs.anthropic.com/en/docs/build-with-claude/mcp"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/mcp-setup#setup"
                     className="inline-flex items-center gap-2 border-2 border-pdt-dark text-pdt-dark bg-white py-2 px-4 rounded-lg text-[13px] font-semibold w-full justify-center no-underline hover:bg-green-light transition-colors"
                   >
-                    View local instructions →
-                  </a>
+                    View local instructions &rarr;
+                  </Link>
                 </div>
               </div>
 

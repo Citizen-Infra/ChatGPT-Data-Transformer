@@ -167,12 +167,10 @@ export default function Home() {
           When you upload your history, we transform it into files you can plug into Claude using MCP — a way for AI tools to access your personal data locally, on your terms.
         </p>
         <a
-          href="https://docs.anthropic.com/en/docs/build-with-claude/mcp"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/mcp-setup"
           className="inline-flex items-center gap-2 border border-white/40 text-white py-3 px-7 rounded-lg text-sm font-semibold no-underline hover:bg-white/10 transition-colors"
         >
-          Setup Guide →
+          Setup Guide &rarr;
         </a>
       </section>
 
