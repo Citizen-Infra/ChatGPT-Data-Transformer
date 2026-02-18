@@ -204,7 +204,7 @@ export default function Home() {
               {[
                 { title: "Nothing leaves your browser", desc: "Your file is parsed and transformed using client-side JavaScript on your own device. There\u2019s no server, no upload, no account. Close the tab and everything is gone." },
                 { title: "AI features are opt-in", desc: "If you connect your files to Claude through MCP, Claude processes your queries on Anthropic\u2019s servers. If you use our API for networking cards, only lenses and project types are shared \u2014 never raw conversations. Both are optional." },
-                { title: "No tracking, no analytics", desc: "We don\u2019t use Google Analytics, cookies, or fingerprinting. There is no behavioral tracking of any kind." },
+                { title: "Privacy-preserving analytics only", desc: "We use Vercel Analytics for simple page-view and upload counts. No cookies, no fingerprinting, no behavioral tracking." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-3">
                   <div className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center flex-shrink-0 mt-0.5">

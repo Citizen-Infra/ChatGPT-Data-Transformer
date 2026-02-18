@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { parseConversationsJson } from "@/lib/parser";
 import { buildAndDownloadMcpZip } from "@/lib/mcpZip";
 import { PDT_SNAPSHOT_KEY, PDT_ZIP_DOWNLOADED_KEY, PDT_ZIP_BANNER_DISMISSED_KEY } from "@/lib/types";
@@ -34,6 +35,10 @@ export function UploadSection({ variant = "hero" }: { variant?: Variant }) {
         await buildAndDownloadMcpZip(snapshot, evidence);
         setProgress(100);
         setStatus("done");
+        track("file_upload", {
+          conversations: snapshot.conversation_count,
+          messages: snapshot.message_count,
+        });
         sessionStorage.setItem(PDT_SNAPSHOT_KEY, JSON.stringify(snapshot));
         sessionStorage.setItem(PDT_ZIP_DOWNLOADED_KEY, "true");
         sessionStorage.removeItem(PDT_ZIP_BANNER_DISMISSED_KEY);
