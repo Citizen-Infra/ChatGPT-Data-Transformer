@@ -133,37 +133,18 @@ export default function Home() {
             <p className="text-sm text-[var(--text-secondary)] mb-8 leading-relaxed">
               Everything runs in your browser. Your data never touches our servers.
             </p>
-            <div className="space-y-6">
-              <div className="flex gap-3">
-                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🔥</div>
-                <div>
-                  <h4 className="text-sm font-bold mb-1">Processed entirely in your browser</h4>
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">No upload, no transmission. We use your device&apos;s own compute to do the transformation.</p>
+            <div className="space-y-4">
+              <div className="flex gap-3 items-start">
+                <div className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-pdt-dark"><polyline points="20 6 9 17 4 12" /></svg>
                 </div>
+                <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Runs entirely in your browser &mdash; no servers, no accounts, no data leaves your device.</p>
               </div>
-              <div className="flex gap-3">
-                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🛡️</div>
-                <div>
-                  <h4 className="text-sm font-bold mb-1">We have no database</h4>
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">There is nothing to breach. Closing this tab deletes everything — nothing persists.</p>
+              <div className="flex gap-3 items-start">
+                <div className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-pdt-dark"><polyline points="20 6 9 17 4 12" /></svg>
                 </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">📁</div>
-                <div>
-                  <h4 className="text-sm font-bold mb-1">Files live only on your device</h4>
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">The outputs you download belong to you. We can&apos;t access them after you leave.</p>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="w-7 h-7 rounded flex items-center justify-center text-base flex-shrink-0">🔗</div>
-                <div>
-                  <h4 className="text-sm font-bold mb-1">Connect Claude to your history</h4>
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Use MCP to give Claude direct access to your past conversations &mdash; searchable and citable. Your files stay on your device; Claude reads them when you ask a question.</p>
-                  <a href="/mcp-setup" className="text-[13px] font-semibold text-pdt-dark no-underline hover:underline mt-1 inline-block">
-                    Learn more about MCP &rarr;
-                  </a>
-                </div>
+                <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">Outputs download straight to your machine. <a href="#privacy" className="font-semibold text-pdt-dark no-underline hover:underline">See how privacy works &rarr;</a></p>
               </div>
             </div>
           </div>
@@ -202,10 +183,9 @@ export default function Home() {
             </h2>
             <div className="space-y-6">
               {[
-                { title: "Client-side JavaScript only", desc: "Your file is processed entirely in your browser using your device\u2019s compute. Nothing is uploaded anywhere." },
-                { title: "No database, nothing to breach", desc: "We don\u2019t store anything. There\u2019s no account system. Closing this tab destroys all processed data permanently." },
-                { title: "AI features are opt-in only", desc: "PDT transforms your data entirely in your browser \u2014 we never see it. If you choose to connect your files to Claude through MCP, Claude processes your queries using Anthropic\u2019s standard privacy practices. You can also use our API to generate artifacts like networking cards \u2014 only your lenses and project types are shared, never raw conversations." },
-                { title: "Privacy-preserving analytics only", desc: "We use Plausible (not Google Analytics) for simple page-view counts. No behavioral tracking, no fingerprinting." },
+                { title: "Nothing leaves your browser", desc: "Your file is parsed and transformed using client-side JavaScript on your own device. There\u2019s no server, no upload, no account. Close the tab and everything is gone." },
+                { title: "AI features are opt-in", desc: "If you connect your files to Claude through MCP, Claude processes your queries on Anthropic\u2019s servers. If you use our API for networking cards, only lenses and project types are shared \u2014 never raw conversations. Both are optional." },
+                { title: "No tracking, no analytics", desc: "We don\u2019t use Google Analytics, cookies, or fingerprinting. There is no behavioral tracking of any kind." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-3">
                   <div className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center flex-shrink-0 mt-0.5">
