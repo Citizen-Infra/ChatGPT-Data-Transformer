@@ -8,7 +8,19 @@ import { Nav } from "./Nav";
 import { SubNav } from "./SubNav";
 import { ZipBanner } from "./ZipBanner";
 
-const USAGE_BAR_COLORS = ["#1a3a2a", "#2d5a3f", "#3d7a56", "#8cc5a0"];
+/* WCAG-accessible color palette — distinguishable across common color vision deficiencies */
+const USAGE_COLORS: Record<string, string> = {
+  technical:     "#1a3a2a",
+  research:      "#4a7ab5",
+  writing:       "#d4883a",
+  brainstorming: "#7b5ea7",
+  planning:      "#c4564a",
+  communication: "#3a9e8f",
+  learning:      "#8ab84a",
+  creative:      "#d4a03a",
+  other:         "#999999",
+};
+const USAGE_COLOR_FALLBACK = "#1a3a2a";
 
 /** Format an ISO date string into "Mon YYYY" */
 function formatShortDate(iso: string): string {
@@ -53,7 +65,7 @@ export function ResultsView() {
     );
   }
 
-  const topUsage = snapshot.usage_signature.filter((u) => u.pct > 0).slice(0, 4);
+  const topUsage = snapshot.usage_signature.filter((u) => u.pct > 0);
   const yearsOfHistory = snapshot.date_range.first && snapshot.date_range.last
     ? Math.max(1, Math.round((new Date(snapshot.date_range.last).getTime() - new Date(snapshot.date_range.first).getTime()) / (365.25 * 24 * 60 * 60 * 1000)))
     : 0;
@@ -109,47 +121,83 @@ export function ResultsView() {
       <div className="max-w-[960px] mx-auto px-6 md:px-8 pb-20">
 
         {/* ═══════════════════════════════════════════════════════════
-            HOW YOU USE AI — Stacked bar + legend left, Activity by month right
+            HOW YOU USE AI — Horizontal bars (WCAG accessible)
             ═══════════════════════════════════════════════════════════ */}
         <div className="pt-14 pb-4">
           <div className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)] mb-2">Usage Signature</div>
           <h2 className="font-serif-pdt text-3xl font-normal text-[var(--text-primary)] mb-8 leading-tight">How you use AI</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-[var(--border)] pt-8">
-            {/* Left: stacked bar + legend */}
+
+            {/* Left: Accessible horizontal bar chart — one bar per category */}
             <div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Breakdown by Usage Type</div>
-              <div className="flex h-[18px] rounded overflow-hidden gap-0.5 mb-6">
-                {topUsage.map((u, i) => (
-                  <div key={u.id} className="h-full rounded-sm transition-all duration-500" style={{ flex: u.pct || 1, background: USAGE_BAR_COLORS[i % 4] }} />
-                ))}
-              </div>
-              <div className="flex flex-col gap-3.5">
-                {topUsage.map((u, i) => (
-                  <div key={u.id} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: USAGE_BAR_COLORS[i % 4] }} />
-                      <span className="text-sm text-[var(--text-primary)]">{u.label.split(" &")[0].split(" /")[0]}</span>
+              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Breakdown by Usage Type</div>
+              <div role="list" aria-label="Usage breakdown by category" className="flex flex-col gap-3">
+                {topUsage.map((u) => {
+                  const catKey = u.id.toLowerCase().replace(/[^a-z]/g, "");
+                  const barColor = USAGE_COLORS[catKey] ?? USAGE_COLOR_FALLBACK;
+                  const labelText = u.label.split(" &")[0].split(" /")[0];
+                  const labelId = `cat-${catKey}`;
+                  return (
+                    <div key={u.id} role="listitem" className="grid grid-cols-[110px_1fr_40px] gap-3 items-center">
+                      <span id={labelId} className="text-[14px] text-[var(--text-primary)] text-right truncate">{labelText}</span>
+                      <div
+                        className="h-4 bg-[#e8e5df] rounded overflow-hidden"
+                        role="progressbar"
+                        aria-labelledby={labelId}
+                        aria-valuenow={u.pct}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                      >
+                        <div
+                          className="h-full rounded"
+                          style={{
+                            width: `${Math.max(u.pct, 4)}%`,
+                            backgroundColor: barColor,
+                            transition: "width 0.5s ease",
+                          }}
+                        />
+                      </div>
+                      <span className="text-[14px] font-semibold text-[var(--text-primary)] text-right">{u.pct}%</span>
                     </div>
-                    <span className="text-sm font-semibold text-[var(--text-primary)]">{u.pct}%</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
-            {/* Right: Activity by month rows */}
+
+            {/* Right: Activity by month — individual month-year, chronological, scrollable */}
             <div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Activity by Month</div>
+              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Activity by Month</div>
               {snapshot.activity_by_month?.length > 0 ? (
-                <div className="flex flex-col gap-3">
+                <div
+                  role="list"
+                  aria-label="Messages per month"
+                  className="flex flex-col gap-2.5 overflow-y-auto"
+                  style={{ maxHeight: "360px" }}
+                >
                   {snapshot.activity_by_month.map((m) => {
                     const maxCount = Math.max(...snapshot.activity_by_month!.map((x) => x.count), 1);
-                    const widthPct = Math.max((m.count / maxCount) * 100, 8);
+                    const widthPct = Math.max((m.count / maxCount) * 100, 6);
+                    const labelId = `month-${m.yearMonth}`;
                     return (
-                      <div key={m.yearMonth} className="grid grid-cols-[70px_1fr_36px] gap-3 items-center">
-                        <span className="text-[13px] text-[var(--text-secondary)] text-right">{m.label.split(" ")[0]}</span>
-                        <div className="h-3.5 bg-green-light rounded overflow-hidden">
-                          <div className="h-full rounded bg-green-accent transition-all duration-500" style={{ width: `${widthPct}%` }} />
+                      <div key={m.yearMonth} role="listitem" className="grid grid-cols-[80px_1fr_40px] gap-3 items-center">
+                        <span id={labelId} className="text-[14px] text-[var(--text-secondary)] text-right">{m.label}</span>
+                        <div
+                          className="h-3.5 bg-green-light rounded overflow-hidden"
+                          role="progressbar"
+                          aria-labelledby={labelId}
+                          aria-valuenow={m.count}
+                          aria-valuemin={0}
+                          aria-valuemax={maxCount}
+                        >
+                          <div
+                            className="h-full rounded bg-[#2d5a3f]"
+                            style={{
+                              width: `${widthPct}%`,
+                              transition: "width 0.5s ease",
+                            }}
+                          />
                         </div>
-                        <span className="text-[13px] font-semibold text-[var(--text-primary)] text-right">{m.count}</span>
+                        <span className="text-[14px] font-semibold text-[var(--text-primary)] text-right">{m.count}</span>
                       </div>
                     );
                   })}
@@ -158,6 +206,7 @@ export function ResultsView() {
                 <p className="text-sm text-[var(--text-muted)]">No monthly data available.</p>
               )}
             </div>
+
           </div>
         </div>
 

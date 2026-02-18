@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { PDT_ZIP_DOWNLOADED_KEY, PDT_ZIP_BANNER_DISMISSED_KEY } from "@/lib/types";
 
 export function ZipBanner() {
@@ -30,20 +31,18 @@ export function ZipBanner() {
             </p>
           </div>
           <div className="flex items-center gap-3 flex-shrink-0 flex-wrap">
-            <a
-              href="https://docs.anthropic.com/en/docs/build-with-claude/mcp"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/mcp-setup"
               className="inline-flex items-center gap-2 bg-green-mid text-white border border-white/20 py-2.5 px-5 rounded-lg text-sm font-semibold no-underline hover:bg-green-accent transition-colors whitespace-nowrap"
             >
-              Setup Guide →
-            </a>
-            <a
-              href="#files-explained"
+              Setup Guide &rarr;
+            </Link>
+            <Link
+              href="/mcp-setup#setup"
               className="inline-flex items-center gap-2 bg-white/10 text-white/90 border border-white/15 py-2.5 px-5 rounded-lg text-sm font-medium no-underline hover:bg-white/20 transition-colors whitespace-nowrap"
             >
               What&apos;s in my files?
-            </a>
+            </Link>
             <button
               type="button"
               onClick={dismiss}
