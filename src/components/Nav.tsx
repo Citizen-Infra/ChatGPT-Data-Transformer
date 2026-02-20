@@ -28,37 +28,40 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
     ? "text-sm font-medium text-white/80 no-underline hover:text-white transition-colors"
     : "text-sm font-medium text-[var(--text-secondary)] no-underline hover:text-[var(--text-primary)] transition-colors";
 
-  const uploadHref = variant === "results" ? "/" : "/#upload";
+  const ctaHref = variant === "results" ? "/" : "/#setup";
 
   return (
     <nav
       className={`sticky top-0 z-50 border-b px-6 md:px-8 ${
-        isDark ? "bg-pdt-dark border-white/10" : "bg-white border-[var(--border)]"
+        isDark ? "bg-pdt-dark border-white/10" : "bg-white/[0.92] backdrop-blur-[20px] border-[var(--border)]"
       }`}
     >
-      <div className="h-16 flex items-center justify-between">
+      <div className="h-14 flex items-center justify-between">
         {/* Logo — clickable SVG */}
         <Link href="/" className="no-underline flex-shrink-0">
           <PdtLogo isDark={isDark} />
         </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-8">
           <Link href="/#how" className={linkClass}>
             How it works
           </Link>
           <Link href="/#privacy" className={linkClass}>
             Privacy
           </Link>
+          <Link href="/#about" className={linkClass}>
+            About
+          </Link>
           <Link
-            href={uploadHref}
-            className={`text-sm font-semibold px-5 py-2.5 rounded-lg no-underline transition-colors ${
+            href={ctaHref}
+            className={`text-sm font-semibold px-5 py-2 rounded-lg no-underline transition-colors ${
               isDark
                 ? "text-white bg-pdt-dark border border-white/30 hover:bg-green-mid"
-                : "text-white bg-pdt-dark hover:bg-green-mid"
+                : "text-cream bg-pdt-dark hover:bg-green-mid"
             }`}
           >
-            Upload your data &rarr;
+            Get started
           </Link>
         </div>
 
@@ -89,12 +92,15 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
           <Link href="/#privacy" onClick={() => setMenuOpen(false)} className={linkClass}>
             Privacy
           </Link>
+          <Link href="/#about" onClick={() => setMenuOpen(false)} className={linkClass}>
+            About
+          </Link>
           <Link
-            href={uploadHref}
+            href={ctaHref}
             onClick={() => setMenuOpen(false)}
             className="text-sm font-semibold text-white bg-pdt-dark px-5 py-3 rounded-lg no-underline hover:bg-green-mid transition-colors text-center"
           >
-            Upload your data &rarr;
+            Get started
           </Link>
         </div>
       </div>
