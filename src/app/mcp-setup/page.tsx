@@ -339,7 +339,7 @@ export default function McpSetupPage() {
                     <span className="text-[15px] text-[var(--text-secondary)] flex-1 hidden sm:inline">{tool.label}</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-[18px] h-[18px] text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[600px]" : "max-h-0"}`}>
+                  {isOpen && (
                     <div className="px-6 pb-5 pt-0">
                       <p className="text-[14px] font-medium text-[var(--text-primary)] mb-2 sm:hidden">{tool.label}</p>
                       <p className="text-[15px] text-[var(--text-secondary)] leading-[1.7] mb-4">{tool.description}</p>
@@ -357,7 +357,7 @@ export default function McpSetupPage() {
                         </>
                       )}
                     </div>
-                  </div>
+                  )}
                 </div>
               );
             })}
@@ -536,11 +536,11 @@ export default function McpSetupPage() {
                     <span className="text-[15px] font-semibold text-[var(--text-primary)] pr-4">&ldquo;{item.q}&rdquo;</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-[18px] h-[18px] text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[300px]" : "max-h-0"}`}>
+                  {isOpen && (
                     <div className="px-6 pb-5 pt-0">
                       <p className="text-[14px] text-[var(--text-secondary)] leading-[1.6]">{item.a}</p>
                     </div>
-                  </div>
+                  )}
                 </div>
               );
             })}
