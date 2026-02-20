@@ -237,18 +237,15 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
           {/* Bottom accent line */}
           <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#3a5a4a]" />
 
-          {/* Compact logo — only visible when scrolled and primary collapsed */}
-          <Link
-            href="/"
-            className="compact-logo no-underline flex items-center flex-shrink-0 overflow-hidden transition-all duration-[250ms] ease-out"
-            style={{
-              opacity: primaryCollapsed ? 1 : 0,
-              width: primaryCollapsed ? "auto" : 0,
-              marginRight: primaryCollapsed ? 12 : 0,
-            }}
-          >
-            <PdtLogoCompact />
-          </Link>
+          {/* Compact logo — only visible when primary is collapsed */}
+          {primaryCollapsed && (
+            <Link
+              href="/"
+              className="compact-logo no-underline flex items-center flex-shrink-0 mr-3"
+            >
+              <PdtLogoCompact />
+            </Link>
+          )}
 
           {/* Section nav links — centered */}
           <nav
@@ -277,7 +274,8 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
             })}
           </nav>
 
-          {/* Expand button — only visible when scrolled and primary collapsed */}
+          {/* Expand button — only visible when primary is collapsed */}
+          {primaryCollapsed && (
           <button
             type="button"
             onClick={() => {
@@ -287,14 +285,11 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
               });
             }}
             aria-label="Toggle navigation"
-            className="flex-shrink-0 flex items-center justify-center p-1 overflow-hidden transition-all duration-[250ms] ease-out"
+            className="flex-shrink-0 flex items-center justify-center p-1 ml-2"
             style={{
               background: "none",
               border: "none",
               cursor: "pointer",
-              opacity: primaryCollapsed ? 1 : 0,
-              width: primaryCollapsed ? 28 : 0,
-              marginLeft: primaryCollapsed ? 8 : 0,
             }}
           >
             <svg
@@ -322,6 +317,7 @@ export function Nav({ variant = "landing" }: { variant?: "landing" | "results" }
               )}
             </svg>
           </button>
+          )}
         </div>
       )}
     </header>
