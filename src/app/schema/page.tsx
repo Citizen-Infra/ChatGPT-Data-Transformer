@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
-import { SubNav } from "@/components/SubNav";
 
 const LAYERS = [
   { num: 1, name: "Index", desc: "The entry point. Calibrates identity, communication style, and sensitive topics \u2014 before a single conversation is read.", path: "index.json" },
@@ -24,7 +23,6 @@ export default function SchemaPage() {
   return (
     <>
       <Nav variant="landing" />
-      <SubNav />
 
       {/* ═══ HERO ═══ */}
       <section

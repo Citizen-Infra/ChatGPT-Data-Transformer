@@ -5,7 +5,6 @@ import Link from "next/link";
 import { PDT_SNAPSHOT_KEY } from "@/lib/types";
 import type { Snapshot } from "@/lib/types";
 import { Nav } from "./Nav";
-import { SubNav } from "./SubNav";
 
 /* WCAG-accessible color palette — distinguishable across common color vision deficiencies */
 const USAGE_COLORS: Record<string, string> = {
@@ -50,7 +49,6 @@ export function ResultsView() {
     return (
       <>
         <Nav variant="landing" />
-        <SubNav />
         <main className="min-h-screen max-w-2xl mx-auto px-6 py-16 bg-white">
           <p className="text-pdt-body">
             No snapshot in this session.{" "}
@@ -77,7 +75,6 @@ export function ResultsView() {
   return (
     <>
       <Nav variant="landing" />
-      <SubNav />
 
       {/* Hero — dark green, eyebrow + title + paragraph + CTAs */}
       <section className="bg-pdt-dark text-center px-6 py-10 md:py-12">
