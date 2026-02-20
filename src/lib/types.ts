@@ -42,6 +42,13 @@ export interface ProjectSummary {
   conversation_count?: number;
 }
 
+/** Individual conversation entry for the conversations table */
+export interface ConversationEntry {
+  title: string;
+  messageCount: number;
+  date: string;            // ISO date of first message, e.g. "2024-03-15"
+}
+
 /** Snapshot returned after parsing conversations.json */
 export interface Snapshot {
   conversation_count: number;
@@ -49,6 +56,7 @@ export interface Snapshot {
   date_range: { first: string; last: string };
   usage_signature: UsageCategory[];
   top_projects: ProjectSummary[];
+  top_conversations: ConversationEntry[];
   interest_tags: string[];
   primary_lens?: string;
   activity_by_month: MonthlyActivity[];

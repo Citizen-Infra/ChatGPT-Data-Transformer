@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { PDT_SNAPSHOT_KEY } from "@/lib/types";
 import type { Snapshot } from "@/lib/types";
@@ -28,8 +28,26 @@ function formatShortDate(iso: string): string {
 
 
 
+const PREVIEW_COUNT = 5;
+
 export function ResultsView() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
+  const [showAllConversations, setShowAllConversations] = useState(false);
+
+  /* Close modal on Escape key */
+  const handleEscape = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") setShowAllConversations(false);
+  }, []);
+  useEffect(() => {
+    if (showAllConversations) {
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "";
+    };
+  }, [showAllConversations, handleEscape]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -213,6 +231,91 @@ export function ResultsView() {
           </div>
         </div>
 
+
+        {/* ═══════════════════════════════════════════════════════════
+            TOP CONVERSATIONS — table with expandable full-screen modal
+            ═══════════════════════════════════════════════════════════ */}
+        {(snapshot.top_conversations?.length ?? 0) > 0 && (
+          <div className="pt-10 pb-2">
+            <div className="border-t border-[var(--border)] pt-6">
+              <div className="text-[11px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mb-4">Top Conversations</div>
+              {/* Table header */}
+              <div className="grid items-center gap-3 pb-2 border-b border-[var(--border)]" style={{ gridTemplateColumns: "1fr 56px 80px" }}>
+                <span className="font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)]">Title</span>
+                <span className="font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)] text-right">Msgs</span>
+                <span className="font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)] text-right">Date</span>
+              </div>
+              {/* Table rows — preview */}
+              {snapshot.top_conversations.slice(0, PREVIEW_COUNT).map((conv) => (
+                <div key={conv.title} className="grid items-center gap-3 py-2.5 border-b border-[var(--border)] last:border-b-0" style={{ gridTemplateColumns: "1fr 56px 80px" }}>
+                  <span className="text-[14px] text-[var(--text-primary)] truncate" title={conv.title}>{conv.title}</span>
+                  <span className="font-mono-pdt text-[13px] text-[var(--text-secondary)] text-right">{conv.messageCount}</span>
+                  <span className="font-mono-pdt text-[12px] text-[var(--text-muted)] text-right">{conv.date ? formatShortDate(conv.date) : "—"}</span>
+                </div>
+              ))}
+              {/* Show all button */}
+              {snapshot.top_conversations.length > PREVIEW_COUNT && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllConversations(true)}
+                  className="mt-3 text-[13px] font-medium text-green-mid hover:text-pdt-dark transition-colors"
+                  style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                >
+                  Show all {snapshot.top_conversations.length} conversations &rarr;
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* ═══════════════════════════════════════════════════════════
+            FULL-SCREEN CONVERSATIONS MODAL
+            ═══════════════════════════════════════════════════════════ */}
+        {showAllConversations && (snapshot.top_conversations?.length ?? 0) > 0 && (
+          <div
+            className="fixed inset-0 z-[100] flex items-start justify-center bg-black/50 backdrop-blur-sm"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowAllConversations(false); }}
+          >
+            <div className="bg-white w-full max-w-full mx-3 md:mx-6 mt-12 mb-12 rounded-xl shadow-2xl overflow-hidden flex flex-col" style={{ maxHeight: "calc(100vh - 96px)" }}>
+              {/* Modal header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] flex-shrink-0">
+                <div>
+                  <h3 className="text-[16px] font-bold text-[var(--text-primary)]">All Conversations</h3>
+                  <p className="text-[12px] text-[var(--text-muted)] mt-0.5">{snapshot.top_conversations.length} conversations by message count</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowAllConversations(false)}
+                  className="flex items-center justify-center w-8 h-8 rounded-lg hover:bg-[var(--green-light)] transition-colors flex-shrink-0"
+                  style={{ background: "none", border: "none", cursor: "pointer" }}
+                  aria-label="Close"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+              {/* Modal table */}
+              <div className="overflow-y-auto flex-1 px-6">
+                {/* Table header */}
+                <div className="grid items-center gap-3 py-3 border-b border-[var(--border)] sticky top-0 bg-white" style={{ gridTemplateColumns: "1fr 56px 80px" }}>
+                  <span className="font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)]">Title</span>
+                  <span className="font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)] text-right">Msgs</span>
+                  <span className="font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)] text-right">Date</span>
+                </div>
+                {/* Table rows */}
+                {snapshot.top_conversations.map((conv, i) => (
+                  <div key={`${conv.title}-${i}`} className="grid items-center gap-3 py-2.5 border-b border-[var(--border)] last:border-b-0" style={{ gridTemplateColumns: "1fr 56px 80px" }}>
+                    <span className="text-[14px] text-[var(--text-primary)] truncate" title={conv.title}>{conv.title}</span>
+                    <span className="font-mono-pdt text-[13px] text-[var(--text-secondary)] text-right">{conv.messageCount}</span>
+                    <span className="font-mono-pdt text-[12px] text-[var(--text-muted)] text-right">{conv.date ? formatShortDate(conv.date) : "—"}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ═══════════════════════════════════════════════════════════
             MCP + NETWORKING CARD — redesigned action cards

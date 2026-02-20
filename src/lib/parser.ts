@@ -689,6 +689,12 @@ export function parseConversationsJson(data: unknown): { evidence: EvidenceRow[]
     conversation_count: c.totalCount,
   }));
 
+  /* ── Top conversations — individual titles sorted by message count ── */
+  const top_conversations = Object.entries(titleMeta)
+    .map(([title, meta]) => ({ title, messageCount: meta.messageCount, date: meta.lastDate ?? meta.firstDate ?? "" }))
+    .sort((a, b) => b.messageCount - a.messageCount)
+    .slice(0, 50);
+
   /* ── Themes ────────────────────────────────────────────────────── */
   const interest_tags = extractThemes(highSignalItems, allTitles, 10);
 
@@ -710,6 +716,7 @@ export function parseConversationsJson(data: unknown): { evidence: EvidenceRow[]
     date_range: { first: sortedDates[0] ?? "", last: sortedDates[sortedDates.length - 1] ?? "" },
     usage_signature,
     top_projects,
+    top_conversations,
     interest_tags,
     primary_lens: interest_tags[0] ?? usage_signature[0]?.label,
     activity_by_month,
