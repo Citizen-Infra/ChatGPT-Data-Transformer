@@ -80,21 +80,21 @@ export function ResultsView() {
       <SubNav />
 
       {/* Hero — dark green, eyebrow + title + paragraph + CTAs */}
-      <section className="bg-pdt-dark text-center px-6 py-14 md:py-16">
-        <div className="uppercase tracking-widest text-[11px] font-semibold mb-4" style={{ color: "#88E7BB" }}>
+      <section className="bg-pdt-dark text-center px-6 py-10 md:py-12">
+        <div className="uppercase tracking-widest text-[11px] font-semibold mb-3" style={{ color: "#88E7BB" }}>
           What just downloaded
         </div>
-        <h1 className="font-serif-pdt text-4xl md:text-5xl font-normal text-white mb-4 leading-tight">
+        <h1 className="font-serif-pdt text-3xl md:text-4xl font-normal text-white mb-3 leading-tight">
           The architecture of your thinking.
         </h1>
-        <p className="text-white/70 text-[15px] max-w-[600px] mx-auto leading-relaxed mb-8">
+        <p className="text-white/70 text-[14px] max-w-[560px] mx-auto leading-relaxed mb-6">
           That zip file is a portable schema &mdash; the scaffolding that turns raw chat logs into something an AI can actually work with. Connect it to Claude to populate it and start working with your history, not just storing it.
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap">
-          <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark border-0 rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/90 transition-colors">
+          <Link href="/mcp-setup" className="inline-flex items-center gap-2 bg-white text-pdt-dark border-0 rounded-lg py-2.5 px-5 text-sm font-semibold no-underline hover:bg-white/90 transition-colors">
             Set up your MCP &rarr;
           </Link>
-          <Link href="/schema" className="inline-flex items-center gap-2 border border-white/30 text-white rounded-lg py-3 px-6 text-sm font-semibold no-underline hover:bg-white/10 transition-colors">
+          <Link href="/schema" className="inline-flex items-center gap-2 border border-white/30 text-white rounded-lg py-2.5 px-5 text-sm font-semibold no-underline hover:bg-white/10 transition-colors">
             What did I just download?
           </Link>
         </div>
@@ -103,36 +103,36 @@ export function ResultsView() {
       {/* ═══════════════════════════════════════════════════════════
           STATS BANNER — 4 stats: Conversations | Messages | Years | Active Since
           ═══════════════════════════════════════════════════════════ */}
-      <div className="max-w-[960px] mx-auto px-6 md:px-8 -mt-7 relative z-10">
+      <div className="max-w-[960px] mx-auto px-6 md:px-8 -mt-6 relative z-10">
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--border)]">
-            <div className="p-6 md:p-8 text-center">
-              <div className="font-serif-pdt text-3xl md:text-4xl font-normal text-[var(--text-primary)] leading-tight">{snapshot.conversation_count.toLocaleString()}</div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Conversations</div>
+            <div className="p-4 md:p-6 text-center">
+              <div className="font-serif-pdt text-2xl md:text-3xl font-normal text-[var(--text-primary)] leading-tight">{snapshot.conversation_count.toLocaleString()}</div>
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-1.5">Conversations</div>
             </div>
-            <div className="p-6 md:p-8 text-center">
-              <div className="font-serif-pdt text-3xl md:text-4xl font-normal text-[var(--text-primary)] leading-tight">{snapshot.message_count.toLocaleString()}</div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Messages</div>
+            <div className="p-4 md:p-6 text-center">
+              <div className="font-serif-pdt text-2xl md:text-3xl font-normal text-[var(--text-primary)] leading-tight">{snapshot.message_count.toLocaleString()}</div>
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-1.5">Messages</div>
             </div>
-            <div className="p-6 md:p-8 text-center">
-              <div className="font-serif-pdt text-3xl md:text-4xl font-normal text-[var(--text-primary)] leading-tight">{yearsOfHistory}</div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Years of History</div>
+            <div className="p-4 md:p-6 text-center">
+              <div className="font-serif-pdt text-2xl md:text-3xl font-normal text-[var(--text-primary)] leading-tight">{yearsOfHistory}</div>
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-1.5">Years of History</div>
             </div>
-            <div className="p-6 md:p-8 text-center">
-              <div className="font-serif-pdt text-lg md:text-xl font-normal text-[var(--text-primary)] leading-tight mt-1">{activeSince}</div>
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-2">Active Since</div>
+            <div className="p-4 md:p-6 text-center">
+              <div className="font-serif-pdt text-base md:text-lg font-normal text-[var(--text-primary)] leading-tight mt-0.5">{activeSince}</div>
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-[var(--text-muted)] mt-1.5">Active Since</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-[960px] mx-auto px-6 md:px-8 pb-20">
+      <div className="max-w-[960px] mx-auto px-6 md:px-8 pb-12">
 
         {/* ═══════════════════════════════════════════════════════════
             CHARTS — Usage breakdown + Conversations by month
             ═══════════════════════════════════════════════════════════ */}
-        <div className="pt-14 pb-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-[var(--border)] pt-8">
+        <div className="pt-10 pb-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-[var(--border)] pt-6">
 
             {/* Left: Accessible horizontal bar chart — one bar per category */}
             <div>
@@ -220,13 +220,13 @@ export function ResultsView() {
         {/* ═══════════════════════════════════════════════════════════
             MCP + NETWORKING CARD — redesigned action cards
             ═══════════════════════════════════════════════════════════ */}
-        <div className="pt-14 pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="pt-10 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
             {/* MCP Card — dark */}
             <div
               className="rounded-2xl flex flex-col overflow-hidden transition-all hover:shadow-[0_8px_32px_rgba(26,46,35,0.25)]"
-              style={{ background: "#1A2E23", border: "1px solid #243B2E", padding: "36px 32px 32px" }}
+              style={{ background: "#1A2E23", border: "1px solid #243B2E", padding: "28px 28px 26px" }}
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 flex-shrink-0"
@@ -245,10 +245,10 @@ export function ResultsView() {
                 Requires Claude Desktop
               </span>
               <h3 className="font-serif-pdt text-2xl font-normal text-white mb-3 leading-tight">Connect to Claude</h3>
-              <p className="text-[15px] leading-relaxed mb-2 flex-grow" style={{ color: "rgba(255,255,255,0.75)" }}>
+              <p className="text-[14px] leading-relaxed mb-1.5 flex-grow" style={{ color: "rgba(255,255,255,0.75)" }}>
                 Point your schema at Claude through MCP. It stays on your device &mdash; Claude reads it directly.
               </p>
-              <p className="text-[13px] leading-relaxed mb-7" style={{ color: "rgba(255,255,255,0.5)" }}>~5 minute setup</p>
+              <p className="text-[12px] leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>~5 minute setup</p>
               <div className="flex items-center gap-3 flex-wrap">
                 <Link
                   href="/mcp-setup"
@@ -273,7 +273,7 @@ export function ResultsView() {
             {/* Networking Card — light */}
             <div
               className="rounded-2xl flex flex-col overflow-hidden transition-all hover:shadow-[0_8px_32px_rgba(26,46,35,0.08)]"
-              style={{ background: "#FFFFFF", border: "1px solid #D8DDD9", padding: "36px 32px 32px" }}
+              style={{ background: "#FFFFFF", border: "1px solid #D8DDD9", padding: "28px 28px 26px" }}
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 flex-shrink-0"
@@ -291,10 +291,10 @@ export function ResultsView() {
                 New
               </span>
               <h3 className="font-serif-pdt text-2xl font-normal text-[var(--text-primary)] mb-3 leading-tight">Your Networking Card</h3>
-              <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mb-2 flex-grow">
+              <p className="text-[14px] text-[var(--text-secondary)] leading-relaxed mb-1.5 flex-grow">
                 A shareable snapshot of your projects, interests, and thinking style &mdash; pulled from your history. Bring it to your next meetup instead of small talk.
               </p>
-              <p className="text-[13px] mb-7" style={{ color: "#6B7C72" }}>Generate here or via MCP in Claude</p>
+              <p className="text-[12px] mb-5" style={{ color: "#6B7C72" }}>Generate here or via MCP in Claude</p>
               <Link
                 href="/networking-card"
                 className="inline-flex items-center gap-2 w-fit rounded-full text-[14px] font-semibold no-underline text-white transition-all hover:-translate-y-px"
@@ -312,7 +312,7 @@ export function ResultsView() {
 
 
         {/* Build with us — callout */}
-        <div className="pt-14 border-t border-[var(--border)]">
+        <div className="pt-10 border-t border-[var(--border)]">
           <div className="border-l-4 border-green-accent bg-green-light/40 rounded-r-lg px-6 py-5">
             <p className="text-[14px] font-semibold text-[var(--text-primary)] mb-2">Want to build anti-extractive, data-portable, relational tools?</p>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed mb-3">
@@ -332,7 +332,7 @@ export function ResultsView() {
 
 
       {/* Footer */}
-      <footer className="border-t border-[var(--border)] mt-8 py-6 px-6 md:px-8">
+      <footer className="border-t border-[var(--border)] mt-4 py-6 px-6 md:px-8">
         <div className="max-w-[960px] mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="font-mono-pdt font-bold text-[15px] text-pdt-dark">chatgpt.pdt</div>
           <div className="flex gap-6">
