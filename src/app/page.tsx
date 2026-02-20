@@ -343,14 +343,21 @@ export default function Home() {
 
           {/* Product Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10">
-            <div className="border border-[var(--card-border)] rounded-xl p-6 bg-white transition-all hover:border-[#c8d8cf] hover:-translate-y-0.5 hover:shadow-md">
-              <span className="inline-block py-0.5 px-2 rounded-full font-mono-pdt text-[10px] font-semibold tracking-wider uppercase bg-pdt-dark text-cream mb-3">ChatGPT</span>
+            {/* ChatGPT — active / focused */}
+            <div className="border-2 border-green-accent rounded-xl p-6 bg-[#F2FAF5] shadow-[0_2px_12px_rgba(45,106,79,0.10)] relative">
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="inline-block py-0.5 px-2 rounded-full font-mono-pdt text-[10px] font-semibold tracking-wider uppercase bg-pdt-dark text-cream">ChatGPT</span>
+                <span className="inline-block py-0.5 px-2 rounded-full font-mono-pdt text-[10px] font-semibold tracking-wider uppercase bg-green-accent text-white">You are here</span>
+              </div>
               <h4 className="font-serif-pdt text-xl font-normal text-[var(--text-primary)] mb-2 leading-[1.2]">ChatGPT Data Transformer</h4>
               <p className="text-[13px] text-[var(--text-secondary)] leading-snug mb-4">Analyze your ChatGPT export &mdash; see your usage signature, topics, and conversation patterns. Same privacy-first approach, built for OpenAI&apos;s format.</p>
-              <a href="#" className="text-sm text-green-mid font-medium no-underline inline-flex items-center gap-1 transition-all hover:gap-2 hover:text-pdt-dark">Get started &rarr;</a>
+              <a href="#setup" className="text-sm text-green-mid font-semibold no-underline inline-flex items-center gap-1 transition-all hover:gap-2 hover:text-pdt-dark">Get started &rarr;</a>
             </div>
+            {/* Claude — secondary */}
             <div className="border border-[var(--card-border)] rounded-xl p-6 bg-white transition-all hover:border-[#c8d8cf] hover:-translate-y-0.5 hover:shadow-md">
-              <span className="inline-block py-0.5 px-2 rounded-full font-mono-pdt text-[10px] font-semibold tracking-wider uppercase bg-green-light text-pdt-dark mb-3">Claude</span>
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="inline-block py-0.5 px-2 rounded-full font-mono-pdt text-[10px] font-semibold tracking-wider uppercase bg-green-light text-pdt-dark">Claude</span>
+              </div>
               <h4 className="font-serif-pdt text-xl font-normal text-[var(--text-primary)] mb-2 leading-[1.2]">Claude Data Transformer</h4>
               <p className="text-[13px] text-[var(--text-secondary)] leading-snug mb-4">Discover your Claude usage patterns and get matched with Skills that make your workflows more efficient.</p>
               <a href="https://claude-data-transformer.vercel.app" className="text-sm text-green-mid font-medium no-underline inline-flex items-center gap-1 transition-all hover:gap-2 hover:text-pdt-dark">Visit tool &rarr;</a>
