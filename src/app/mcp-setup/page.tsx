@@ -177,7 +177,7 @@ export default function McpSetupPage() {
       {/* ═══════════════════════════════════════
           HERO
           ═══════════════════════════════════════ */}
-      <section className="bg-cream pt-[130px] pb-[72px] px-6 text-center border-b border-[var(--card-border)]">
+      <section className="bg-cream pt-[100px] pb-[72px] px-6 text-center border-b border-[var(--card-border)]">
         <div className="max-w-[660px] mx-auto">
           <div className="font-mono-pdt text-[10px] font-medium tracking-[0.15em] uppercase text-[#8BA898] mb-3">
             Your data, working for you
@@ -315,7 +315,7 @@ export default function McpSetupPage() {
       {/* ═══════════════════════════════════════
           SIX TOOLS
           ═══════════════════════════════════════ */}
-      <section className="bg-cream py-[72px] px-6 border-t border-b border-[var(--card-border)]">
+      <section id="tools" className="bg-cream py-[72px] px-6 border-t border-b border-[var(--card-border)]">
         <div className="max-w-[780px] mx-auto">
           <div className="font-mono-pdt text-[10px] font-medium tracking-[0.15em] uppercase text-[var(--text-muted)] mb-3">What you can actually do</div>
           <h2 className="font-sans text-[26px] font-bold leading-[1.3] text-[var(--text-primary)] mb-3.5">Six tools PDT gives you.</h2>
@@ -518,7 +518,7 @@ export default function McpSetupPage() {
       {/* ═══════════════════════════════════════
           FAQ
           ═══════════════════════════════════════ */}
-      <section className="py-[72px] px-6">
+      <section id="faq" className="py-[72px] px-6">
         <div className="max-w-[780px] mx-auto">
           <div className="font-mono-pdt text-[10px] font-medium tracking-[0.15em] uppercase text-[var(--text-muted)] mb-3">Troubleshooting</div>
           <h2 className="font-sans text-[26px] font-bold leading-[1.3] text-[var(--text-primary)] mb-8">Common questions</h2>

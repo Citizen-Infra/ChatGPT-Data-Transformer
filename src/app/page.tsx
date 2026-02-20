@@ -7,7 +7,7 @@ export default function Home() {
       <main className="min-h-screen bg-white">
 
       {/* ─── HERO ─── */}
-      <section className="pt-[130px] pb-[72px] px-6 text-center max-w-[780px] mx-auto">
+      <section className="pt-[100px] pb-[72px] px-6 text-center max-w-[780px] mx-auto">
         <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-cream border border-[var(--card-border)] rounded-full font-mono-pdt text-[10px] font-medium tracking-wider uppercase text-[var(--text-muted)] mb-8 animate-fadeUp">
           <span className="w-1.5 h-1.5 bg-[#6DBF73] rounded-full" />
           Your data never leaves your machine

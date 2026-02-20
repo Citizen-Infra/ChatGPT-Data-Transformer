@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
-import { SubNav } from "@/components/SubNav";
 
 /* ───────────────────────────────────────────
    The Claude prompt for self-generation
@@ -48,13 +47,12 @@ export default function NetworkingCardPage() {
   return (
     <>
       <Nav variant="landing" />
-      <SubNav />
       <main className="min-h-screen bg-white">
 
       {/* ═══════════════════════════════════════
           1. HERO
           ═══════════════════════════════════════ */}
-      <section className="bg-cream text-center px-6 py-16 md:py-24">
+      <section className="bg-cream text-center px-6 pt-8 pb-16 md:pt-12 md:pb-24">
         <div className="max-w-[720px] mx-auto">
           <div className="uppercase tracking-widest text-[11px] font-semibold text-green-accent mb-4">
             Your networking card
@@ -71,7 +69,7 @@ export default function NetworkingCardPage() {
       {/* ═══════════════════════════════════════
           2. WHAT'S ON IT
           ═══════════════════════════════════════ */}
-      <section className="max-w-[960px] mx-auto px-6 md:px-8 py-20">
+      <section id="whats-on-it" className="max-w-[960px] mx-auto px-6 md:px-8 py-20">
         <div className="uppercase tracking-widest text-[11px] font-semibold text-[var(--text-muted)] mb-3">
           What your card shows
         </div>
@@ -172,7 +170,7 @@ export default function NetworkingCardPage() {
       {/* ═══════════════════════════════════════
           3. WHAT IT'S FOR
           ═══════════════════════════════════════ */}
-      <section className="bg-cream py-20">
+      <section id="why-it-matters" className="bg-cream py-20">
         <div className="max-w-[960px] mx-auto px-6 md:px-8">
           <div className="uppercase tracking-widest text-[11px] font-semibold text-[var(--text-muted)] mb-3">
             Why it matters
@@ -215,7 +213,7 @@ export default function NetworkingCardPage() {
       {/* ═══════════════════════════════════════
           4. TWO WAYS TO GENERATE
           ═══════════════════════════════════════ */}
-      <section className="max-w-[960px] mx-auto px-6 md:px-8 py-20">
+      <section id="how-to-get" className="max-w-[960px] mx-auto px-6 md:px-8 py-20">
         <div className="uppercase tracking-widest text-[11px] font-semibold text-[var(--text-muted)] mb-3">
           Two paths
         </div>
