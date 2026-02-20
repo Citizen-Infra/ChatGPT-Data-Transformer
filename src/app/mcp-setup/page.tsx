@@ -260,11 +260,11 @@ export default function McpSetupPage() {
                   <button type="button" onClick={() => toggleSet(openMcpSteps, i, setOpenMcpSteps)} className="flex items-center gap-3 py-3.5 w-full text-left">
                     <span className="w-6 h-6 rounded-full bg-[#e8f0eb] text-pdt-dark text-xs font-semibold flex items-center justify-center flex-shrink-0">{i + 1}</span>
                     <span className="flex-1 text-[15px] font-medium text-[var(--text-primary)]">{step.title}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-4.5 h-4.5 text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${openMcpSteps.has(i) ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-[18px] h-[18px] text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${openMcpSteps.has(i) ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openMcpSteps.has(i) ? "max-h-40" : "max-h-0"}`}>
+                  {openMcpSteps.has(i) && (
                     <div className="pl-9 pb-3.5 text-[14px] text-[var(--text-secondary)] leading-[1.6]">{step.body}</div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -280,11 +280,11 @@ export default function McpSetupPage() {
                   <button type="button" onClick={() => toggleSet(openWhyUpload, i, setOpenWhyUpload)} className="flex items-center gap-2.5 py-3 w-full text-left">
                     <span className="text-[15px] flex-shrink-0">{item.icon}</span>
                     <span className="flex-1 text-[14px] font-medium text-[var(--text-primary)]">{item.title}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-4.5 h-4.5 text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${openWhyUpload.has(i) ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-[18px] h-[18px] text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${openWhyUpload.has(i) ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openWhyUpload.has(i) ? "max-h-40" : "max-h-0"}`}>
+                  {openWhyUpload.has(i) && (
                     <div className="pl-7 pb-3 text-[13px] text-[var(--text-secondary)] leading-[1.6]">{item.body}</div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -300,11 +300,11 @@ export default function McpSetupPage() {
                   <button type="button" onClick={() => toggleSet(openPrivacy, i, setOpenPrivacy)} className="flex items-center gap-2.5 py-3 w-full text-left">
                     <span className="text-[15px] flex-shrink-0">{item.icon}</span>
                     <span className="flex-1 text-[14px] font-medium text-[var(--text-primary)]">{item.title}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-4.5 h-4.5 text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${openPrivacy.has(i) ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-[18px] h-[18px] text-[#8BA898] flex-shrink-0 transition-transform duration-200 ${openPrivacy.has(i) ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openPrivacy.has(i) ? "max-h-40" : "max-h-0"}`}>
+                  {openPrivacy.has(i) && (
                     <div className="pl-7 pb-3 text-[13px] text-[var(--text-secondary)] leading-[1.6]">{item.body}</div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
